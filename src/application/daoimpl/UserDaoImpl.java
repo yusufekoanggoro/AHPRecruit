@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ahprecruit.daoimpl;
+package application.daoimpl;
 
-import ahprecruit.dao.UserDao;
-import ahprecruit.models.UserModel;
-import ahprecruit.utils.DatabaseUtil;
+import application.dao.UserDao;
+import application.models.UserModel;
+import application.utils.DatabaseUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

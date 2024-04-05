@@ -90,7 +90,7 @@
         <Component class="javax.swing.JLabel" name="logo1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/ahprecruit/resources/image/mytens-lite.png"/>
+              <Image iconType="3" name="/resources/images/mytens-lite.png"/>
             </Property>
           </Properties>
         </Component>
@@ -202,7 +202,7 @@
         <Component class="javax.swing.JButton" name="butonLogin">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/ahprecruit/resources/image/login.png"/>
+              <Image iconType="3" name="/resources/images/login.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Login"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -262,7 +262,7 @@
         <Component class="javax.swing.JButton" name="buttonRegister">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/ahprecruit/resources/image/register.png"/>
+              <Image iconType="3" name="/resources/images/register.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Register"/>
           </Properties>

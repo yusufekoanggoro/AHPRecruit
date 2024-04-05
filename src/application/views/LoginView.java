@@ -1,9 +1,9 @@
-package ahprecruit.views;
+package application.views;
 
-import ahprecruit.dao.UserDao;
-import ahprecruit.daoimpl.UserDaoImpl;
-import ahprecruit.models.UserModel;
-import ahprecruit.utils.DatabaseUtil;
+import application.dao.UserDao;
+import application.daoimpl.UserDaoImpl;
+import application.models.UserModel;
+import application.utils.DatabaseUtil;
 import java.awt.event.KeyEvent;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -119,7 +119,7 @@ public class LoginView extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
-        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ahprecruit/resources/image/mytens-lite.png"))); // NOI18N
+        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/mytens-lite.png"))); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Aplikasi Sistem Pendukung Keputusan");
@@ -160,7 +160,7 @@ public class LoginView extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(0, 51, 102));
 
-        butonLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ahprecruit/resources/image/login.png"))); // NOI18N
+        butonLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/login.png"))); // NOI18N
         butonLogin.setText("Login");
         butonLogin.setPreferredSize(new java.awt.Dimension(100, 30));
         butonLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +193,7 @@ public class LoginView extends javax.swing.JFrame {
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Password");
 
-        buttonRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ahprecruit/resources/image/register.png"))); // NOI18N
+        buttonRegister.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/register.png"))); // NOI18N
         buttonRegister.setText("Register");
         buttonRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

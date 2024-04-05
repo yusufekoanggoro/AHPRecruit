@@ -2,17 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package ahprecruit;
+package application;
 
-import ahprecruit.utils.DatabaseUtil;
-import ahprecruit.views.LoginView;
-import ahprecruit.views.LoginView;
+import application.utils.DatabaseUtil;
+import application.views.LoginView;
 
 /**
  *
  * @author yusuf
  */
-public class AHPRecruit {
+public class Application {
 
     /**
      * @param args the command line arguments
