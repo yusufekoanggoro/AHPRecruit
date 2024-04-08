@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -46,6 +47,7 @@ public class UserDaoImpl implements UserDao {
             return null;
 	} catch (SQLException e) {
             // e.printStackTrace();
+            System.out.println(e);
             throw new RuntimeException(e);
         } finally {
             closeStatement();
@@ -63,7 +65,27 @@ public class UserDaoImpl implements UserDao {
                 resultSet = null;
             }   
         } catch (SQLException e) {
+            System.out.println(e);
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public int insertOne(UserModel user) {
+        try {
+            query = "INSERT INTO users(email,username,password) VALUES (?,?,?)";
+            
+            pstmt = dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            pstmt.setString(1, user.getEmail());
+            pstmt.setString(2, user.getUsername());
+            pstmt.setString(3, user.getPassword());
+            
+            return pstmt.executeUpdate();
+	} catch (SQLException e) {
+            System.out.println(e);
+            throw new RuntimeException(e);
+        } finally {
+            closeStatement();
         }
     }
     

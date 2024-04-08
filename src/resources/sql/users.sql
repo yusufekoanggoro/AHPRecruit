@@ -1,0 +1,21 @@
+CREATE TABLE `codebase`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT, 
+  `name` VARCHAR(255), 
+  `gender` VARCHAR(15), 
+  `email` VARCHAR(50) NOT NULL, 
+  `place_of_birth` VARCHAR(15), 
+  `date_of_birth` DATE, 
+  `address` TEXT, 
+  `religion` VARCHAR(255), 
+  `status` VARCHAR(15), 
+  `phone_number` VARCHAR(15), 
+  `join_date` DATETIME, 
+  `username` VARCHAR(30) NOT NULL, 
+  `password` VARCHAR(255) NOT NULL, 
+  `role_id` INT,
+  `created_at` DATETIME, 
+  `updated_at` DATETIME, 
+  PRIMARY KEY (`id`), 
+  UNIQUE (`username`),
+  UNIQUE (`email`)
+) ENGINE = InnoDB;

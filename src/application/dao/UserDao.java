@@ -13,5 +13,6 @@ import application.models.UserModel;
 public interface UserDao {
     
     public UserModel findOneByUsernameAndPassword(String username, String password);
+    public int insertOne(UserModel user);
     
 }

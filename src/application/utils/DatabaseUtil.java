@@ -57,6 +57,7 @@ public class DatabaseUtil {
         try {
             if (connection != null) {
                 connection.close();
+                instance = null;
                 System.out.println("Connection closed");
             }
         } catch (SQLException e) {
