@@ -6,6 +6,7 @@ package application;
 
 import application.utils.DatabaseUtil;
 import application.views.LoginView;
+import application.views.MenuView;
 
 /**
  *
@@ -22,7 +23,8 @@ public class Application {
             Config.load();
             DatabaseUtil.getInstance().getConnection();
 
-            new LoginView().start();
+//            new LoginView().start();
+            new MenuView().start();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

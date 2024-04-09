@@ -84,6 +84,7 @@ public class LoginView extends javax.swing.JFrame {
             }else{
                 JOptionPane.showMessageDialog(this, "Login Berhasil");
                 this.dispose();
+                new MenuView().start();
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Login gagal");
