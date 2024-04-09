@@ -7,8 +7,7 @@ package application.models;
 /**
  *
  * @author yusuf
- */
-public class CandidateModel {
+ */public class CandidateModel {
     private int id;
     private String name;
     private String gender;

@@ -100,7 +100,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tabelKriteria">
+            <Component class="javax.swing.JTable" name="tableCriteria">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="7">
@@ -111,7 +111,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelKriteriaMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableCriteriaMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -137,11 +137,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="tombolSimpan" min="-2" pref="131" max="-2" attributes="0"/>
+                          <Component id="buttonSave" min="-2" pref="131" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                          <Component id="tombolEdit" min="-2" pref="131" max="-2" attributes="0"/>
+                          <Component id="buttonEdit" min="-2" pref="131" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="tombolHapus" min="-2" pref="131" max="-2" attributes="0"/>
+                          <Component id="buttonDelete" min="-2" pref="131" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jPanel11" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -156,9 +156,9 @@
                   <Component id="jPanel11" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tombolSimpan" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
-                      <Component id="tombolEdit" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
-                      <Component id="tombolHapus" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
+                      <Component id="buttonSave" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
+                      <Component id="buttonEdit" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
+                      <Component id="buttonDelete" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="55" max="32767" attributes="0"/>
               </Group>
@@ -166,7 +166,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="tombolSimpan">
+        <Component class="javax.swing.JButton" name="buttonSave">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="33" red="0" type="rgb"/>
@@ -180,10 +180,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tombolSimpanActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSaveActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="tombolEdit">
+        <Component class="javax.swing.JButton" name="buttonEdit">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="33" red="0" type="rgb"/>
@@ -197,10 +197,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tombolEditActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEditActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="tombolHapus">
+        <Component class="javax.swing.JButton" name="buttonDelete">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="66" type="rgb"/>
@@ -214,7 +214,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tombolHapusActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDeleteActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel11">
@@ -242,10 +242,10 @@
                       </Group>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="cbKriteria4" alignment="0" pref="266" max="32767" attributes="0"/>
-                          <Component id="cbKriteria3" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cbKriteria2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cbKriteria1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="comboBoxCriteria4" alignment="0" pref="266" max="32767" attributes="0"/>
+                          <Component id="comboBoxCriteria3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="comboBoxCriteria2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="comboBoxCriteria1" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -257,21 +257,21 @@
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbKriteria1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxCriteria1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="cbKriteria2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxCriteria2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="cbKriteria3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxCriteria3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="cbKriteria4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxCriteria4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="40" max="32767" attributes="0"/>
@@ -312,15 +312,15 @@
                 <Property name="text" type="java.lang.String" value="Kriteria biasa ke-4"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cbKriteria1">
+            <Component class="javax.swing.JComboBox" name="comboBoxCriteria1">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
                     <StringItem index="0" value="Pilih Kriteria -"/>
-                    <StringItem index="1" value="Pendidikan Terakhir"/>
-                    <StringItem index="2" value="Wawancara"/>
-                    <StringItem index="3" value="Waktu Luang"/>
-                    <StringItem index="4" value="Sikap"/>
+                    <StringItem index="1" value="Nilai Kepemimpinan"/>
+                    <StringItem index="2" value="Pengetahuan"/>
+                    <StringItem index="3" value="Kemampuan Teknis"/>
+                    <StringItem index="4" value="Kemampuan Lanjutan"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -328,15 +328,15 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cbKriteria2">
+            <Component class="javax.swing.JComboBox" name="comboBoxCriteria2">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
                     <StringItem index="0" value="Pilih Kriteria -"/>
-                    <StringItem index="1" value="Pendidikan Terakhir"/>
-                    <StringItem index="2" value="Wawancara"/>
-                    <StringItem index="3" value="Waktu Luang"/>
-                    <StringItem index="4" value="Sikap"/>
+                    <StringItem index="1" value="Nilai Kepemimpinan"/>
+                    <StringItem index="2" value="Pengetahuan"/>
+                    <StringItem index="3" value="Kemampuan Teknis"/>
+                    <StringItem index="4" value="Kemampuan Lanjutan"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -344,15 +344,15 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cbKriteria3">
+            <Component class="javax.swing.JComboBox" name="comboBoxCriteria3">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
                     <StringItem index="0" value="Pilih Kriteria -"/>
-                    <StringItem index="1" value="Pendidikan Terakhir"/>
-                    <StringItem index="2" value="Wawancara"/>
-                    <StringItem index="3" value="Waktu Luang"/>
-                    <StringItem index="4" value="Sikap"/>
+                    <StringItem index="1" value="Nilai Kepemimpinan"/>
+                    <StringItem index="2" value="Pengetahuan"/>
+                    <StringItem index="3" value="Kemampuan Teknis"/>
+                    <StringItem index="4" value="Kemampuan Lanjutan"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -360,15 +360,15 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cbKriteria4">
+            <Component class="javax.swing.JComboBox" name="comboBoxCriteria4">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
                     <StringItem index="0" value="Pilih Kriteria -"/>
-                    <StringItem index="1" value="Pendidikan Terakhir"/>
-                    <StringItem index="2" value="Wawancara"/>
-                    <StringItem index="3" value="Waktu Luang"/>
-                    <StringItem index="4" value="Sikap"/>
+                    <StringItem index="1" value="Nilai Kepemimpinan"/>
+                    <StringItem index="2" value="Pengetahuan"/>
+                    <StringItem index="3" value="Kemampuan Teknis"/>
+                    <StringItem index="4" value="Kemampuan Lanjutan"/>
                   </StringArray>
                 </Property>
               </Properties>

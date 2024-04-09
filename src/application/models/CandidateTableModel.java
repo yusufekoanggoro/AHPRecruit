@@ -1,9 +1,7 @@
 package application.models;
 
 import java.util.List;
-import javax.swing.table.AbstractTableModel;
-
-public class CandidateTableModel extends AbstractTableModel {
+import javax.swing.table.AbstractTableModel;public class CandidateTableModel extends AbstractTableModel {
     List<CandidateModel> candidates;
     
     public CandidateTableModel(List<CandidateModel> candidates) {

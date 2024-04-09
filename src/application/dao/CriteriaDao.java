@@ -5,16 +5,16 @@
 package application.dao;
 
 import application.models.CandidateModel;
+import application.models.CriteriaModel;
 import java.util.List;
 
 /**
  *
  * @author yusuf
- */public interface CandidateDao {
-    
-    public int insertOne(CandidateModel candidate);
-    public List<CandidateModel> findAll();
+ */
+public interface CriteriaDao {
+    public int insertOne(CriteriaModel criteria);
+    public List<CriteriaModel> findAll();
+    public int update(CriteriaModel criteria);
     public int delete(int id);
-    public int update(CandidateModel candidate);
-    
 }
