@@ -9,9 +9,20 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -434,6 +445,22 @@ public class MenuView extends javax.swing.JFrame {
     private void laporanCalonPelamarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanCalonPelamarMouseClicked
         // TODO add your handling code here:
         try{
+            String templateName = "CandidateDataReport.jrxml";
+            InputStream reportStream = MenuView.class.getResourceAsStream("/resources/reports/" + templateName);
+            JasperDesign jd = JRXmlLoader.load(reportStream);
+            
+            Connection dbConnection = DatabaseUtil.getInstance().getConnection();
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            
+            HashMap parameter = new HashMap();
+            parameter.put("PATH_IMG","src/resources/images/");
+//            Map<String, Object> params = new HashMap<>();
+//            
+//            BufferedImage image = ImageIO.read(getClass().getResource("/resources/templates/cherry.jpg"));
+//            params.put("logo", image );
+
+            JasperPrint jp = JasperFillManager.fillReport(jr,parameter, dbConnection);
+            JasperViewer.viewReport(jp, false);
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
