@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.1.final using JasperReports Library version 6.20.1-7584acb244139816654f64e2fd57a00d3e31921e  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="laporan data calon pelamar" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a35a0630-0e03-4d5f-8867-47fd086f8695">
 	<property name="ireport.zoom" value="0.8264462809917359"/>
 	<property name="ireport.x" value="0"/>
@@ -54,7 +55,7 @@
 		<field name="technical_skill_score" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
-                <field name="advanced_skill_score" class="java.lang.Integer">
+		<field name="advanced_skill_score" class="java.lang.Integer">
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 	</subDataset>
@@ -109,7 +110,7 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="234" splitType="Stretch">
+		<band height="240" splitType="Stretch">
 			<componentElement>
 				<reportElement key="table" positionType="Float" x="0" y="0" width="802" height="86" uuid="27c6614c-8905-4e08-8f46-810d5d70c406"/>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
@@ -332,7 +333,7 @@
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-                                        <jr:column width="67" uuid="17301d08-1d7a-4e37-8cdb-5f83222d9e80">
+					<jr:column width="67" uuid="17301d08-1d7a-4e37-8cdb-5f83222d9e80">
 						<jr:tableHeader style="table_TH" height="25" rowSpan="1">
 							<staticText>
 								<reportElement mode="Opaque" x="0" y="0" width="67" height="25" backcolor="#CCCCFF" uuid="82ea1ec1-8cbf-465c-8775-304464e7328a"/>
@@ -370,14 +371,14 @@
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
-				<text><![CDATA[Manager SDM]]></text>
+				<text><![CDATA[Dibuat oleh,]]></text>
 			</staticText>
 			<staticText>
 				<reportElement positionType="Float" x="637" y="212" width="165" height="20" uuid="4a8ab4cd-d78f-45ec-b765-d677eedff35e"/>
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
-				<text><![CDATA[Hasannudin]]></text>
+				<text><![CDATA[(Admin)]]></text>
 			</staticText>
 			<line>
 				<reportElement positionType="Float" x="637" y="212" width="165" height="1" uuid="c3985f27-b569-4ac7-ab40-81febbe1e589"/>
@@ -388,6 +389,30 @@
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[Jakarta, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="117" width="165" height="20" uuid="703995c2-af98-49a2-9439-e088b52cf958"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Mengetahui,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="137" width="165" height="20" uuid="01c1ac4b-7ce9-4edf-8077-511879fda74d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Manager SDM]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="10" y="212" width="165" height="1" uuid="ddf80ad9-6d64-48b8-9e2e-b8d5c6607437"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="10" y="212" width="165" height="20" uuid="fed31c22-488d-41f5-b053-d86f510ece56"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[(Abdul)]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
