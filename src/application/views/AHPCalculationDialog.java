@@ -1,263 +1,51 @@
 
 package application.views;
-import java.awt.Color;
-import java.awt.Cursor;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import application.dao.CandidateDao;
+import application.dao.SelectionDao;
+import application.daoimpl.CandidateDaoImpl;
+import application.models.CandidateModel;
+import application.daoimpl.SelectionDaoImpl;
+import application.models.SelectionModel;
+import application.utils.AHPCalculation;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import javax.swing.JRootPane;
-import javax.swing.table.DefaultTableModel;
-//import koneksi.Koneksi;
 
 /**
  *
  * @author NaufalSholahuddin
  */
 public class AHPCalculationDialog extends javax.swing.JDialog {
-//    private Connection conn = new Koneksi().connect();
-    private DefaultTableModel tabmode;
-//    protected KriteriaAhp kriteria = new KriteriaAhp();
-//    protected SubKriteriaAhp SubK = new SubKriteriaAhp();
+    protected AHPCalculation ahpCalculation = new AHPCalculation();
     DecimalFormat df = new DecimalFormat("#.##");
-    ArrayList<String> K = new ArrayList<String>();
-    ArrayList<Double> KS4x4 = new ArrayList<Double>();
-    ArrayList<Double> KS3x3 = new ArrayList<Double>();
-    String noIdAlternatif, namaAlternatif, noHpAlternatif, pendidikanAlternatif, waktuAlternatif, sikapAlternatif;
-    int wawancaraAlternatif;
-    double nilaiAlternatif, totalNilai;
+    private final CandidateDao candidateDao;
+    private final SelectionDao selectionDao;
+    private CandidateModel candidateFound;
     
     /**
-     * Creates new form DialogTambahData
+     * Creates new form AHPCalculationDialog
      */
     public AHPCalculationDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-//        getRelasiId();
         
         //add Panel, add panel(sebuah panel)
         Pane.add(PanelPerhitungan);
         Pane.repaint();
         Pane.revalidate();
-    }
-    
-    void kosong(){
-        TotalNilai.setText("");
-    }
-    
-    //nilai matriks berpasangan kriteria
-    public void getMatriksK(){
-//        k1k1.setText(df.format(kriteria.matriksBerpasangan[0][0]));
-//        k1k2.setText(df.format(kriteria.matriksBerpasangan[0][1]));
-//        k1k3.setText(df.format(kriteria.matriksBerpasangan[0][2]));
-//        k1k4.setText(df.format(kriteria.matriksBerpasangan[0][3]));
-//        k2k1.setText(df.format(kriteria.matriksBerpasangan[1][0]));
-//        k2k2.setText(df.format(kriteria.matriksBerpasangan[1][1]));
-//        k2k3.setText(df.format(kriteria.matriksBerpasangan[1][2]));
-//        k2k4.setText(df.format(kriteria.matriksBerpasangan[1][3]));
-//        k3k1.setText(df.format(kriteria.matriksBerpasangan[2][0]));
-//        k3k2.setText(df.format(kriteria.matriksBerpasangan[2][1]));
-//        k3k3.setText(df.format(kriteria.matriksBerpasangan[2][2]));
-//        k3k4.setText(df.format(kriteria.matriksBerpasangan[2][3]));
-//        k4k1.setText(df.format(kriteria.matriksBerpasangan[3][0]));
-//        k4k2.setText(df.format(kriteria.matriksBerpasangan[3][1]));
-//        k4k3.setText(df.format(kriteria.matriksBerpasangan[3][2]));
-//        k4k4.setText(df.format(kriteria.matriksBerpasangan[3][3]));
-    }
-    
-    //nilai matriks berpasangan kriteria
-    public void getMatriksNorK(){
-//        k1k1N.setText(df.format(kriteria.matriksNormalisasi[0][0]));
-//        k1k2N.setText(df.format(kriteria.matriksNormalisasi[0][1]));
-//        k1k3N.setText(df.format(kriteria.matriksNormalisasi[0][2]));
-//        k1k4N.setText(df.format(kriteria.matriksNormalisasi[0][3]));
-//        k2k1N.setText(df.format(kriteria.matriksNormalisasi[1][0]));
-//        k2k2N.setText(df.format(kriteria.matriksNormalisasi[1][1]));
-//        k2k3N.setText(df.format(kriteria.matriksNormalisasi[1][2]));
-//        k2k4N.setText(df.format(kriteria.matriksNormalisasi[1][3]));
-//        k3k1N.setText(df.format(kriteria.matriksNormalisasi[2][0]));
-//        k3k2N.setText(df.format(kriteria.matriksNormalisasi[2][1]));
-//        k3k3N.setText(df.format(kriteria.matriksNormalisasi[2][2]));
-//        k3k4N.setText(df.format(kriteria.matriksNormalisasi[2][3]));
-//        k4k1N.setText(df.format(kriteria.matriksNormalisasi[3][0]));
-//        k4k2N.setText(df.format(kriteria.matriksNormalisasi[3][1]));
-//        k4k3N.setText(df.format(kriteria.matriksNormalisasi[3][2]));
-//        k4k4N.setText(df.format(kriteria.matriksNormalisasi[3][3]));
-//        Prior1.setText(df.format(kriteria.prioritas[0]));
-//        Prior2.setText(df.format(kriteria.prioritas[1]));
-//        Prior3.setText(df.format(kriteria.prioritas[2]));
-//        Prior4.setText(df.format(kriteria.prioritas[3]));
+        
+        candidateDao = new CandidateDaoImpl();
+        selectionDao = new SelectionDaoImpl();
+        
+        for (CandidateModel item : candidateDao.findAll()) {
+            cbIdCalonPelamar.addItem(String.valueOf(item.getId()));
+        }
         
     }
-    //nilai prioritas untuk sub-kriteria dari kriteria yang tersedia
-    public void getPrioritasSub(){
-//        getKriteria();
-//        if(K.get(0).equals("Pendidikan Terakhir") || K.get(0).equals("Sikap")){
-//            PriorS11.setText(df.format(SubK.prioritasSub4x4[0]));
-//            PriorS12.setText(df.format(SubK.prioritasSub4x4[1]));
-//            PriorS13.setText(df.format(SubK.prioritasSub4x4[2]));
-//            PriorS14.setText(df.format(SubK.prioritasSub4x4[3]));
-//        }
-//        if(K.get(1).equals("Pendidikan Terakhir") || K.get(1).equals("Sikap")){
-//            PriorS21.setText(df.format(SubK.prioritasSub4x4[0]));
-//            PriorS22.setText(df.format(SubK.prioritasSub4x4[1]));
-//            PriorS23.setText(df.format(SubK.prioritasSub4x4[2]));
-//            PriorS24.setText(df.format(SubK.prioritasSub4x4[3]));
-//        }
-//        if(K.get(2).equals("Pendidikan Terakhir") || K.get(2).equals("Sikap")){
-//            PriorS31.setText(df.format(SubK.prioritasSub4x4[0]));
-//            PriorS32.setText(df.format(SubK.prioritasSub4x4[1]));
-//            PriorS33.setText(df.format(SubK.prioritasSub4x4[2]));
-//            PriorS34.setText(df.format(SubK.prioritasSub4x4[3]));
-//        }
-//        if(K.get(3).equals("Pendidikan Terakhir") || K.get(3).equals("Sikap")){
-//            PriorS41.setText(df.format(SubK.prioritasSub4x4[0]));
-//            PriorS42.setText(df.format(SubK.prioritasSub4x4[1]));
-//            PriorS43.setText(df.format(SubK.prioritasSub4x4[2]));
-//            PriorS44.setText(df.format(SubK.prioritasSub4x4[3]));
-//        }
-//        if(K.get(0).equals("Waktu Luang") || K.get(0).equals("Wawancara")){
-//            PriorS11.setText(df.format(SubK.prioritasSub3x3[0]));
-//            PriorS12.setText(df.format(SubK.prioritasSub3x3[1]));
-//            PriorS13.setText(df.format(SubK.prioritasSub3x3[2]));
-//        }
-//        if(K.get(1).equals("Waktu Luang") || K.get(1).equals("Wawancara")){
-//            PriorS21.setText(df.format(SubK.prioritasSub3x3[0]));
-//            PriorS22.setText(df.format(SubK.prioritasSub3x3[1]));
-//            PriorS23.setText(df.format(SubK.prioritasSub3x3[2]));
-//        }
-//        if(K.get(2).equals("Waktu Luang") || K.get(2).equals("Wawancara")){
-//            PriorS31.setText(df.format(SubK.prioritasSub3x3[0]));
-//            PriorS32.setText(df.format(SubK.prioritasSub3x3[1]));
-//            PriorS33.setText(df.format(SubK.prioritasSub3x3[2]));
-//        }
-//        if(K.get(3).equals("Waktu Luang") || K.get(3).equals("Wawancara")){
-//            PriorS41.setText(df.format(SubK.prioritasSub3x3[0]));
-//            PriorS42.setText(df.format(SubK.prioritasSub3x3[1]));
-//            PriorS43.setText(df.format(SubK.prioritasSub3x3[2]));
-//        }
-        
+    
+    void clearForm(){
+        textFieldTotalNilai.setText("");
     }
-    //menentukan kriteria pada kode K1, K2, K3, K4
-     public void getKriteria(){
-        String sql = "SELECT nama_kriteria FROM kriteria ORDER BY kd_kriteria";
-        try{
-            java.sql.Statement stat = conn.createStatement();
-            ResultSet hasil = stat.executeQuery(sql);
-            while(hasil.next()){
-                String a = hasil.getString("nama_kriteria");
-                K.add(a);
-            }
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,e);
-        }
-    }
-    
-    
-     
-    //Mendapatkan alternatif dari calon pelamar yang ada
-    public void getAlternatif(){
-        String sql = "SELECT DISTINCT * FROM calon_pelamar WHERE no_id='"+cbIdCalonPelamar.getSelectedItem().toString()+"'";
-        try{
-            java.sql.Statement stat = conn.createStatement();
-            ResultSet hasil = stat.executeQuery(sql);
-            while(hasil.next()){
-                String a = hasil.getString("no_id");
-                String b = hasil.getString("nama");
-                String c = hasil.getString("no_hp");
-                String d = hasil.getString("Pendidikan_terakhir");
-                String e = hasil.getString("nilai_wawancara");
-                String f = hasil.getString("waktu_luang");
-                String g = hasil.getString("sikap");
-                noIdAlternatif = a;
-                namaAlternatif = b;
-                noHpAlternatif = c;
-                pendidikanAlternatif = d;
-                wawancaraAlternatif = Integer.parseInt(e);
-                waktuAlternatif = f;
-                sikapAlternatif = g;
-            }
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,e);
-        }
-    } 
-    //melakukan perhitungan dari alternatif yang dipilih
-    //untuk mendapatkan hasil penilaian
-    public void getPenilaian(){
-        //perhitungan untuk sikap
-//        if(sikapAlternatif.equals("Jujur")){
-//            nilaiAlternatif = SubK.prioritasSub4x4[0] * kriteria.prioritas[0];
-//            totalNilai += nilaiAlternatif;
-//        }else if(sikapAlternatif.equals("Amanah")){
-//            nilaiAlternatif = SubK.prioritasSub4x4[1] * kriteria.prioritas[0];
-//            totalNilai += nilaiAlternatif;
-//        }else if(sikapAlternatif.equals("Tanggung Jawab")){
-//            nilaiAlternatif = SubK.prioritasSub4x4[2] * kriteria.prioritas[0];
-//            totalNilai += nilaiAlternatif;
-//        }else{
-//            nilaiAlternatif = SubK.prioritasSub4x4[3] * kriteria.prioritas[0];
-//            totalNilai += nilaiAlternatif;
-//        }
-//        //perhitungan untuk Waktu Luang
-//        if(waktuAlternatif.equals("PAGI")){
-//            nilaiAlternatif = SubK.prioritasSub3x3[0] * kriteria.prioritas[1];
-//            totalNilai += nilaiAlternatif;
-//        }else if(waktuAlternatif.equals("SIANG")){
-//            nilaiAlternatif = SubK.prioritasSub3x3[1] * kriteria.prioritas[1];
-//            totalNilai += nilaiAlternatif;
-//        }else{
-//            nilaiAlternatif = SubK.prioritasSub3x3[2] * kriteria.prioritas[1];
-//            totalNilai += nilaiAlternatif;
-//        }
-//        //perhitungan untuk Wawancara
-//        if(wawancaraAlternatif>0 && wawancaraAlternatif<=60){
-//            nilaiAlternatif = SubK.prioritasSub3x3[2] * kriteria.prioritas[2];
-//            totalNilai += nilaiAlternatif;
-//        }else if(wawancaraAlternatif>60 && wawancaraAlternatif<81){
-//            nilaiAlternatif = SubK.prioritasSub3x3[1] * kriteria.prioritas[2];
-//            totalNilai += nilaiAlternatif;
-//        }else{
-//            nilaiAlternatif = SubK.prioritasSub3x3[0] * kriteria.prioritas[2];
-//            totalNilai += nilaiAlternatif;
-//        }
-//        //perhitungan untuk pendidikan
-//        if(pendidikanAlternatif.equals("S1")){
-//            nilaiAlternatif = SubK.prioritasSub4x4[0] * kriteria.prioritas[3];
-//            totalNilai += nilaiAlternatif;
-//        }else if(pendidikanAlternatif.equals("D3")){
-//            nilaiAlternatif = SubK.prioritasSub4x4[1] * kriteria.prioritas[3];
-//            totalNilai += nilaiAlternatif;
-//        }else if(pendidikanAlternatif.equals("SMA")){
-//            nilaiAlternatif = SubK.prioritasSub4x4[2] * kriteria.prioritas[3];
-//            totalNilai += nilaiAlternatif;
-//        }else{
-//            nilaiAlternatif = SubK.prioritasSub4x4[3] * kriteria.prioritas[3];
-//            totalNilai += nilaiAlternatif;
-//        }
-//        TotalNilai.setText(Double.toString(totalNilai));
-    }
-    
-    //Mendapatkan relasi pada combobox pada database calon pelamar 
-    public void getRelasiId(){
-        String sql = "SELECT DISTINCT no_id, nama FROM calon_pelamar ORDER BY no_id";
-        try{
-            java.sql.Statement stat = conn.createStatement();
-            ResultSet hasil = stat.executeQuery(sql);
-            while(hasil.next()){
-                String a = hasil.getString("no_id");
-                cbIdCalonPelamar.addItem(a);
-            }
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,e);
-        }
-    } 
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -335,34 +123,8 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         Prior3 = new javax.swing.JTextField();
         Prior4 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        TotalNilai = new javax.swing.JTextField();
+        textFieldTotalNilai = new javax.swing.JTextField();
         Simpan = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        PriorS11 = new javax.swing.JTextField();
-        PriorS12 = new javax.swing.JTextField();
-        PriorS13 = new javax.swing.JTextField();
-        PriorS14 = new javax.swing.JTextField();
-        jLabel24 = new javax.swing.JLabel();
-        PriorS21 = new javax.swing.JTextField();
-        PriorS22 = new javax.swing.JTextField();
-        PriorS23 = new javax.swing.JTextField();
-        PriorS24 = new javax.swing.JTextField();
-        jLabel25 = new javax.swing.JLabel();
-        PriorS31 = new javax.swing.JTextField();
-        PriorS32 = new javax.swing.JTextField();
-        PriorS33 = new javax.swing.JTextField();
-        PriorS34 = new javax.swing.JTextField();
-        jLabel26 = new javax.swing.JLabel();
-        PriorS41 = new javax.swing.JTextField();
-        PriorS42 = new javax.swing.JTextField();
-        PriorS43 = new javax.swing.JTextField();
-        PriorS44 = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         namaCalonPelamar = new javax.swing.JTextField();
         Pane = new javax.swing.JPanel();
@@ -789,7 +551,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
 
         jLabel22.setText("Total Penilaian Calon Pelamar");
 
-        TotalNilai.setEditable(false);
+        textFieldTotalNilai.setEditable(false);
 
         Simpan.setBackground(new java.awt.Color(0, 51, 102));
         Simpan.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -800,194 +562,6 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                 SimpanActionPerformed(evt);
             }
         });
-
-        jLabel23.setText("Prioritas SubKriteria Sesuai Kriteria");
-
-        jLabel28.setText("K1");
-
-        jLabel29.setText("K2");
-
-        jLabel30.setText("K3");
-
-        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel31.setText("K4");
-
-        jLabel21.setText("Prioritas Sub-Kriteria");
-
-        PriorS11.setEditable(false);
-        PriorS11.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        PriorS12.setEditable(false);
-        PriorS12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        PriorS13.setEditable(false);
-        PriorS13.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        PriorS14.setEditable(false);
-        PriorS14.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        jLabel24.setText("Prioritas Sub-Kriteria");
-
-        PriorS21.setEditable(false);
-        PriorS21.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        PriorS22.setEditable(false);
-        PriorS22.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        PriorS23.setEditable(false);
-        PriorS23.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        PriorS24.setEditable(false);
-        PriorS24.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        jLabel25.setText("Prioritas Sub-Kriteria");
-
-        PriorS31.setEditable(false);
-        PriorS31.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        PriorS32.setEditable(false);
-        PriorS32.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        PriorS33.setEditable(false);
-        PriorS33.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        PriorS34.setEditable(false);
-        PriorS34.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        jLabel26.setText("Prioritas Sub-Kriteria");
-
-        PriorS41.setEditable(false);
-        PriorS41.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        PriorS42.setEditable(false);
-        PriorS42.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        PriorS43.setEditable(false);
-        PriorS43.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        PriorS44.setEditable(false);
-        PriorS44.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(68, 68, 68)
-                                .addComponent(jLabel28))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(PriorS14)
-                                    .addComponent(PriorS13)
-                                    .addComponent(PriorS12)
-                                    .addComponent(PriorS11, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(PriorS24)
-                                    .addComponent(PriorS23)
-                                    .addComponent(PriorS22)
-                                    .addComponent(PriorS21, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(jLabel29)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(PriorS34)
-                                    .addComponent(PriorS33)
-                                    .addComponent(PriorS32)
-                                    .addComponent(PriorS31, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel30)
-                                .addGap(59, 59, 59)))
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PriorS44)
-                            .addComponent(PriorS43)
-                            .addComponent(PriorS42)
-                            .addComponent(PriorS41, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel23)))
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {PriorS11, PriorS12, PriorS13, PriorS14, PriorS21, PriorS22, PriorS23, PriorS24, PriorS31, PriorS32, PriorS33, PriorS34, PriorS41, PriorS42, PriorS43, PriorS44});
-
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel23)
-                .addGap(20, 20, 20)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel25)
-                        .addGap(5, 5, 5)
-                        .addComponent(jLabel30)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS31, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel24)
-                        .addGap(5, 5, 5)
-                        .addComponent(jLabel29)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS21, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel28)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel26)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel31)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS41, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS43, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(PriorS44, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {PriorS11, PriorS12, PriorS13, PriorS14, PriorS21, PriorS22, PriorS23, PriorS24, PriorS31, PriorS32, PriorS33, PriorS34, PriorS41, PriorS42, PriorS43, PriorS44});
 
         jLabel27.setText("Nama Calon Pelamar");
 
@@ -1006,9 +580,6 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                         .addGap(62, 62, 62)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(mulaiHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1022,10 +593,10 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                                     .addComponent(namaCalonPelamar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(cbIdCalonPelamar, 0, 156, Short.MAX_VALUE)
-                                        .addComponent(TotalNilai)))))
+                                        .addComponent(textFieldTotalNilai)))))
                         .addGap(99, 99, 99)
                         .addComponent(Simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Simpan, mulaiHitung});
@@ -1044,7 +615,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TotalNilai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldTotalNilai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mulaiHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1055,9 +626,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Simpan, mulaiHitung});
@@ -1099,49 +668,103 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
     //tombol mulai perhitungan
     private void mulaiHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mulaiHitungActionPerformed
-        // Mendapatkan perhitungan metode AHP
-        getMatriksK();
-        getMatriksNorK();
-        getPrioritasSub();
-        getAlternatif();
-        getPenilaian();
-        totalNilai = 0;
-        // Menyimpan Alternatif hasil penilaian metode AHP
-        
+        try{
+            String id = cbIdCalonPelamar.getSelectedItem().toString();
+            int total = 0;
+            double nilaiAlternatif;
+            
+            candidateFound =  candidateDao.findOneById(Integer.parseInt(id));
+            if(candidateFound != null){
+                namaCalonPelamar.setText(candidateFound.getName());
+                
+                nilaiAlternatif = candidateFound.getLeadershipScore() * ahpCalculation.getPriorityVector()[0];
+                total += nilaiAlternatif; 
+                
+                nilaiAlternatif = candidateFound.getKnowledgeScore() * ahpCalculation.getPriorityVector()[1];
+                total += nilaiAlternatif;
+                
+                nilaiAlternatif = candidateFound.getTechnicalSkillScore() * ahpCalculation.getPriorityVector()[1];
+                total += nilaiAlternatif; 
+                
+                nilaiAlternatif = candidateFound.getAdvancedSkillScore() * ahpCalculation.getPriorityVector()[1];
+                total += nilaiAlternatif;
+                
+                textFieldTotalNilai.setText(String.valueOf(total));
+                
+                double [][] pairwiseComparisonMatrix = ahpCalculation.getPairwiseComparisonMatrix();
+                k1k1.setText(df.format(pairwiseComparisonMatrix[0][0]));
+                k1k2.setText(df.format(pairwiseComparisonMatrix[0][1]));
+                k1k3.setText(df.format(pairwiseComparisonMatrix[0][2]));
+                k1k4.setText(df.format(pairwiseComparisonMatrix[0][3]));
+                k2k1.setText(df.format(pairwiseComparisonMatrix[1][0]));
+                k2k2.setText(df.format(pairwiseComparisonMatrix[1][1]));
+                k2k3.setText(df.format(pairwiseComparisonMatrix[1][2]));
+                k2k4.setText(df.format(pairwiseComparisonMatrix[1][3]));
+                k3k1.setText(df.format(pairwiseComparisonMatrix[2][0]));
+                k3k2.setText(df.format(pairwiseComparisonMatrix[2][1]));
+                k3k3.setText(df.format(pairwiseComparisonMatrix[2][2]));
+                k3k4.setText(df.format(pairwiseComparisonMatrix[2][3]));
+                k4k1.setText(df.format(pairwiseComparisonMatrix[3][0]));
+                k4k2.setText(df.format(pairwiseComparisonMatrix[3][1]));
+                k4k3.setText(df.format(pairwiseComparisonMatrix[3][2]));
+                k4k4.setText(df.format(pairwiseComparisonMatrix[3][3]));
+                
+                double [][] normalizedPairwiseComparisonMatrix = ahpCalculation.getNormalizedPairwiseComparisonMatrix();
+                k1k1N.setText(df.format(normalizedPairwiseComparisonMatrix[0][0]));
+                k1k2N.setText(df.format(normalizedPairwiseComparisonMatrix[0][1]));
+                k1k3N.setText(df.format(normalizedPairwiseComparisonMatrix[0][2]));
+                k1k4N.setText(df.format(normalizedPairwiseComparisonMatrix[0][3]));
+                k2k1N.setText(df.format(normalizedPairwiseComparisonMatrix[1][0]));
+                k2k2N.setText(df.format(normalizedPairwiseComparisonMatrix[1][1]));
+                k2k3N.setText(df.format(normalizedPairwiseComparisonMatrix[1][2]));
+                k2k4N.setText(df.format(normalizedPairwiseComparisonMatrix[1][3]));
+                k3k1N.setText(df.format(normalizedPairwiseComparisonMatrix[2][0]));
+                k3k2N.setText(df.format(normalizedPairwiseComparisonMatrix[2][1]));
+                k3k3N.setText(df.format(normalizedPairwiseComparisonMatrix[2][2]));
+                k3k4N.setText(df.format(normalizedPairwiseComparisonMatrix[2][3]));
+                k4k1N.setText(df.format(normalizedPairwiseComparisonMatrix[3][0]));
+                k4k2N.setText(df.format(normalizedPairwiseComparisonMatrix[3][1]));
+                k4k3N.setText(df.format(normalizedPairwiseComparisonMatrix[3][2]));
+                k4k4N.setText(df.format(normalizedPairwiseComparisonMatrix[3][3]));
+                
+                double [] priorityVector = ahpCalculation.getPriorityVector();
+                Prior1.setText(df.format(priorityVector[0]));
+                Prior2.setText(df.format(priorityVector[1]));
+                Prior3.setText(df.format(priorityVector[2]));
+                Prior4.setText(df.format(priorityVector[3]));
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
     }//GEN-LAST:event_mulaiHitungActionPerformed
     
     //mendapatkan nama calon pelamar dari id yang dipilih
     private void cbIdCalonPelamarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbIdCalonPelamarItemStateChanged
         // TODO add your handling code here:
-        String sql = "SELECT DISTINCT nama FROM calon_pelamar WHERE no_id='"+cbIdCalonPelamar.getSelectedItem().toString()+"';";
         try{
-            java.sql.Statement stat = conn.createStatement();
-            ResultSet hasil = stat.executeQuery(sql);
-            while(hasil.next()){
-                String b = hasil.getString("nama");
-                namaCalonPelamar.setText(b);
+            String id = cbIdCalonPelamar.getSelectedItem().toString();
+            
+            candidateFound =  candidateDao.findOneById(Integer.parseInt(id));
+            if(candidateFound != null){
+                namaCalonPelamar.setText(candidateFound.getName());
             }
-        }catch(SQLException e){
+        }catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
         }
     }//GEN-LAST:event_cbIdCalonPelamarItemStateChanged
+
     //simpan data
     private void SimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimpanActionPerformed
         // TODO add your handling code here:
-        String sql = "INSERT INTO seleksi VALUES (?,?,?,?)";
         try{
-            PreparedStatement stat = conn.prepareStatement(sql);
-
-            stat.setString(1, noIdAlternatif);
-            stat.setString(2, namaAlternatif);
-            stat.setString(3, noHpAlternatif);
-            stat.setString(4, TotalNilai.getText());
+            SelectionModel newSelection = new SelectionModel();
+            newSelection.setUserId(Integer.parseInt(cbIdCalonPelamar.getSelectedItem().toString()));
+            newSelection.setScore(Integer.parseInt(textFieldTotalNilai.getText()));
             
-            
-            stat.executeUpdate();
-            JOptionPane.showMessageDialog(null, "DATA Berhasil Disimpan");
-            kosong();
-        }catch (SQLException e){
+            selectionDao.upsertOne(newSelection);
+            JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
+            this.clearForm();
+        }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Data Gagal Disimpan "+e);
         }
     }//GEN-LAST:event_SimpanActionPerformed
@@ -1210,24 +833,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private javax.swing.JTextField Prior2;
     private javax.swing.JTextField Prior3;
     private javax.swing.JTextField Prior4;
-    private javax.swing.JTextField PriorS11;
-    private javax.swing.JTextField PriorS12;
-    private javax.swing.JTextField PriorS13;
-    private javax.swing.JTextField PriorS14;
-    private javax.swing.JTextField PriorS21;
-    private javax.swing.JTextField PriorS22;
-    private javax.swing.JTextField PriorS23;
-    private javax.swing.JTextField PriorS24;
-    private javax.swing.JTextField PriorS31;
-    private javax.swing.JTextField PriorS32;
-    private javax.swing.JTextField PriorS33;
-    private javax.swing.JTextField PriorS34;
-    private javax.swing.JTextField PriorS41;
-    private javax.swing.JTextField PriorS42;
-    private javax.swing.JTextField PriorS43;
-    private javax.swing.JTextField PriorS44;
     private javax.swing.JButton Simpan;
-    private javax.swing.JTextField TotalNilai;
     private javax.swing.ButtonGroup btnG;
     private javax.swing.JComboBox<String> cbIdCalonPelamar;
     private javax.swing.JLabel jLabel1;
@@ -1243,18 +849,9 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1264,7 +861,6 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel judul;
@@ -1302,6 +898,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private javax.swing.JTextField k4k4N;
     private javax.swing.JButton mulaiHitung;
     private javax.swing.JTextField namaCalonPelamar;
+    private javax.swing.JTextField textFieldTotalNilai;
     // End of variables declaration//GEN-END:variables
 
     void show(JRootPane rootPane) {

@@ -150,5 +150,38 @@ public class CandidateDaoImpl implements CandidateDao {
             closeStatement();
         }
     }
+
+    @Override
+    public CandidateModel findOneById(int id) {
+                try {
+            query = "SELECT * FROM candidates " 
+                    + "WHERE id = ?";
+            
+            pstmt = dbConnection.prepareStatement(query);
+            pstmt.setInt(1, id);
+            
+            resultSet = pstmt.executeQuery();
+            if(resultSet.next()){
+                CandidateModel candidateFound = new CandidateModel();
+                candidateFound.setId(resultSet.getInt("id"));
+                candidateFound.setName(resultSet.getString("name"));
+                candidateFound.setGender(resultSet.getString("gender"));
+                candidateFound.setLastEducation(resultSet.getString("last_education"));
+                candidateFound.setPhoneNumber(resultSet.getString("phone_number"));
+                candidateFound.setAddress(resultSet.getString("address"));
+                candidateFound.setLeadershipScore(resultSet.getInt("leadership_score"));
+                candidateFound.setKnowledgeScore(resultSet.getInt("knowledge_score"));
+                candidateFound.setTechnicalSkillScore(resultSet.getInt("technical_skill_score"));
+                candidateFound.setAdvancedSkillScore(resultSet.getInt("advanced_skill_score"));
+                return candidateFound;
+            }
+            return null;
+	} catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            closeStatement();
+        }
+    }
     
 }

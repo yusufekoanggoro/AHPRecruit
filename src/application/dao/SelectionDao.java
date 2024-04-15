@@ -4,18 +4,19 @@
  */
 package application.dao;
 
-import application.models.CandidateModel;
+import application.models.SelectionModel;
 import java.util.List;
 
 /**
  *
  * @author yusuf
- */public interface CandidateDao {
+ */public interface SelectionDao {
     
-    public int insertOne(CandidateModel candidate);
-    public List<CandidateModel> findAll();
+    public int insertOne(SelectionModel selection);
+    public List<SelectionModel> findAll();
     public int delete(int id);
-    public int update(CandidateModel candidate);
-    public CandidateModel findOneById(int id);
+    public int update(SelectionModel selection);
+    public SelectionModel findOneById(int id);
+    public int upsertOne(SelectionModel selection);
     
 }

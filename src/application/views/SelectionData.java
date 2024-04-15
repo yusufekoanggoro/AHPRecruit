@@ -4,17 +4,48 @@
  */
 package application.views;
 
+import application.dao.SelectionDao;
+import application.daoimpl.SelectionDaoImpl;
+import application.models.SelectionModel;
+import application.models.SelectionTableModel;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author yusuf
  */
 public class SelectionData extends javax.swing.JPanel {
-
+    private final SelectionDao selectionDao;
+    private int id;
     /**
      * Creates new form SelectionData
      */
     public SelectionData() {
         initComponents();
+        selectionDao = new SelectionDaoImpl();
+        this.loadTable();
+    }
+    
+    public void loadTable() {
+        List<SelectionModel> selections = this.selectionDao.findAll();
+        SelectionTableModel selectionTableModel = new SelectionTableModel(selections);
+        
+        tableRanking.setModel(selectionTableModel);
+        
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tableRanking.getModel());
+        tableRanking.setRowSorter(sorter);
+
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+        sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+        sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
+        sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
+        sorter.setSortKeys(sortKeys);
     }
 
     /**
@@ -29,14 +60,13 @@ public class SelectionData extends javax.swing.JPanel {
         judul = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelRanking = new javax.swing.JTable();
-        tombolUpdate = new javax.swing.JButton();
+        tableRanking = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        tombolHapus = new javax.swing.JButton();
+        buttonDelete = new javax.swing.JButton();
         tombolLihatPerhitunganAHP = new javax.swing.JButton();
 
         judul.setBackground(new java.awt.Color(255, 255, 255));
@@ -48,7 +78,7 @@ public class SelectionData extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabelRanking.setModel(new javax.swing.table.DefaultTableModel(
+        tableRanking.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -65,23 +95,12 @@ public class SelectionData extends javax.swing.JPanel {
                 "Ranking", "No.ID", "Nama Calon Pelamar", "No. HP", "Hasil Penilaian"
             }
         ));
-        tabelRanking.addMouseListener(new java.awt.event.MouseAdapter() {
+        tableRanking.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabelRankingMouseClicked(evt);
+                tableRankingMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabelRanking);
-
-        tombolUpdate.setBackground(new java.awt.Color(0, 51, 102));
-        tombolUpdate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        tombolUpdate.setForeground(new java.awt.Color(255, 255, 255));
-        tombolUpdate.setText("Update Data");
-        tombolUpdate.setBorder(null);
-        tombolUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tombolUpdateActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(tableRanking);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -121,14 +140,14 @@ public class SelectionData extends javax.swing.JPanel {
                 .addGap(0, 30, Short.MAX_VALUE))
         );
 
-        tombolHapus.setBackground(new java.awt.Color(0, 51, 102));
-        tombolHapus.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        tombolHapus.setForeground(new java.awt.Color(255, 255, 255));
-        tombolHapus.setText("Hapus");
-        tombolHapus.setBorder(null);
-        tombolHapus.addActionListener(new java.awt.event.ActionListener() {
+        buttonDelete.setBackground(new java.awt.Color(0, 51, 102));
+        buttonDelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        buttonDelete.setForeground(new java.awt.Color(255, 255, 255));
+        buttonDelete.setText("Hapus");
+        buttonDelete.setBorder(null);
+        buttonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tombolHapusActionPerformed(evt);
+                buttonDeleteActionPerformed(evt);
             }
         });
 
@@ -154,10 +173,8 @@ public class SelectionData extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tombolHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tombolUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                        .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(tombolLihatPerhitunganAHP, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -172,9 +189,7 @@ public class SelectionData extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tombolUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tombolHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -199,43 +214,40 @@ public class SelectionData extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tabelRankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelRankingMouseClicked
+    private void tableRankingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableRankingMouseClicked
         // TODO add your handling code here:
-        int bar = tabelRanking.getSelectedRow();
-        String a = tabmode.getValueAt(bar, 1).toString();
-        noId = a;
-    }//GEN-LAST:event_tabelRankingMouseClicked
+        int selectedRow = tableRanking.getSelectedRow();
 
-    private void tombolUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolUpdateActionPerformed
+        TableModel model = tableRanking.getModel();
+        String id = model.getValueAt(selectedRow, 0).toString();
+
+        this.id = Integer.parseInt(id);
+    }//GEN-LAST:event_tableRankingMouseClicked
+
+    private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
         // TODO add your handling code here:
-        dataTabel();
-    }//GEN-LAST:event_tombolUpdateActionPerformed
-
-    private void tombolHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolHapusActionPerformed
-        // TODO add your handling code here:
-        int ok = JOptionPane.showConfirmDialog(null,"hapus","Konfirmasi Dialog",JOptionPane.YES_NO_CANCEL_OPTION);
-        if(ok == 0){
-            String sql = "DELETE FROM seleksi WHERE no_id='"+noId+"'";
-            try{
-                PreparedStatement stat = conn.prepareStatement(sql);
-
-                stat.executeUpdate();
+        try{
+            int ok = JOptionPane.showConfirmDialog(null,"hapus","Konfirmasi Dialog",JOptionPane.YES_NO_CANCEL_OPTION);
+            if(ok == 0){
+                selectionDao.delete(this.id);
                 JOptionPane.showMessageDialog(null, "Data Berhasil diHapus ");
-                dataTabel();
-            }catch(SQLException e){
-                JOptionPane.showMessageDialog(null,"Data Gagal diHapus " + e);
+                loadTable();
             }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Data Gagal diHapus " + e);
         }
-    }//GEN-LAST:event_tombolHapusActionPerformed
+    }//GEN-LAST:event_buttonDeleteActionPerformed
 
     private void tombolLihatPerhitunganAHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tombolLihatPerhitunganAHPActionPerformed
         // TODO add your handling code here:
         AHPCalculationDialog dialog = new AHPCalculationDialog(null, true);
         dialog.show();
+        loadTable();
     }//GEN-LAST:event_tombolLihatPerhitunganAHPActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonDelete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -244,9 +256,7 @@ public class SelectionData extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel judul;
-    private javax.swing.JTable tabelRanking;
-    private javax.swing.JButton tombolHapus;
+    private javax.swing.JTable tableRanking;
     private javax.swing.JButton tombolLihatPerhitunganAHP;
-    private javax.swing.JButton tombolUpdate;
     // End of variables declaration//GEN-END:variables
 }
