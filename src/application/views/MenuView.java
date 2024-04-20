@@ -515,6 +515,22 @@ public class MenuView extends javax.swing.JFrame {
     private void laporanHasilSeleksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanHasilSeleksiMouseClicked
         // TODO add your handling code here:
         try{
+            String templateName = "SelectionDataReport.jrxml";
+            InputStream reportStream = MenuView.class.getResourceAsStream("/resources/reports/" + templateName);
+            JasperDesign jd = JRXmlLoader.load(reportStream);
+            
+            Connection dbConnection = DatabaseUtil.getInstance().getConnection();
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            
+            HashMap parameter = new HashMap();
+            parameter.put("PATH_IMG","src/resources/images/");
+//            Map<String, Object> params = new HashMap<>();
+//            
+//            BufferedImage image = ImageIO.read(getClass().getResource("/resources/templates/cherry.jpg"));
+//            params.put("logo", image );
+
+            JasperPrint jp = JasperFillManager.fillReport(jr,parameter, dbConnection);
+            JasperViewer.viewReport(jp, false);
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
