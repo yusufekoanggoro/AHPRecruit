@@ -5,7 +5,9 @@
 package application.views;
 
 import application.dao.CandidateDao;
+import application.dao.SelectionDao;
 import application.daoimpl.CandidateDaoImpl;
+import application.daoimpl.SelectionDaoImpl;
 import application.models.CandidateModel;
 import application.models.CandidateTableModel;
 import java.sql.PreparedStatement;
@@ -24,6 +26,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class MasterCandidate extends javax.swing.JPanel {
     private final CandidateDao candidateDao;
+    private final SelectionDao selectionDao;
     private AddCandidateDialog addCandidateDialog = new AddCandidateDialog(null, true);
     private String id;
 
@@ -33,6 +36,7 @@ public class MasterCandidate extends javax.swing.JPanel {
     public MasterCandidate() {
         initComponents();
         this.candidateDao = new CandidateDaoImpl();
+        this.selectionDao = new SelectionDaoImpl();
         this.loadTable();
     }
     
@@ -254,6 +258,9 @@ public class MasterCandidate extends javax.swing.JPanel {
                     if(deleted > 0){
                         JOptionPane.showMessageDialog(null, "Data Berhasil diHapus ");
                         loadTable();
+                        System.out.println(id);
+                        selectionDao.deleteByUserId(Integer.parseInt(id));
+                        
                         id = null;
                         addCandidateDialog.clearForm();
                     }else{

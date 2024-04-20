@@ -18,5 +18,6 @@ import java.util.List;
     public int update(SelectionModel selection);
     public SelectionModel findOneById(int id);
     public int upsertOne(SelectionModel selection);
+    public int deleteByUserId(int id);
     
 }

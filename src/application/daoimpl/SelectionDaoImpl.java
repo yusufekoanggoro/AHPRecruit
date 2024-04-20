@@ -145,5 +145,22 @@ public class SelectionDaoImpl implements SelectionDao {
     public SelectionModel findOneById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public int deleteByUserId(int id) {
+            try {
+            query = "DELETE FROM selections WHERE user_id = ?";
+            
+            pstmt = dbConnection.prepareStatement(query);
+            pstmt.setInt(1, id);
+            
+            return pstmt.executeUpdate();
+	} catch (SQLException e) {
+            // e.printStackTrace();
+            throw new RuntimeException(e);
+        }finally{
+            closeStatement();
+        }
+    }
     
 }
