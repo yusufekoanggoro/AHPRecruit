@@ -18,6 +18,7 @@ public final class AHPCalculation {
     private double[] jumlahMatriksPenjumlahan;
     private double[] priorityVector;
     private double[] jumlahCekKonsistensi;
+    private double[] eigenVector;
     
     public AHPCalculation(){
         setPairwiseComparisonMatrix();
@@ -25,13 +26,21 @@ public final class AHPCalculation {
     }
     
     public void setPairwiseComparisonMatrix() {
+        // Membuat matriks perbandingan
+//        double pairwiseComparisonMatrix[][] =  {
+//            {1, 5.0, 7.0, 9.0},
+//            {1.0/5.0, 1, 5.0, 7.0},
+//            {1.0/7.0, 1.0/5.0, 1, 5.0},
+//            {1.0/9.0, 1.0/7.0, 1.0/5.0, 1}
+//        };
+
         double pairwiseComparisonMatrix[][] =  {
-            {1, 5.0, 7.0, 9.0},
-            {1.0/5.0, 1, 5.0, 7.0},
-            {1.0/7.0, 1.0/5.0, 1, 5.0},
-            {1.0/9.0, 1.0/7.0, 1.0/5.0, 1}
+            {1.0, 2.0, 3.0, 4.0},
+            {1.0 / 2.0, 1.0, 2.0, 3.0},
+            {1.0 / 3.0, 1.0 / 2.0, 1.0, 3.0},
+            {1.0 / 4.0, 1.0 / 3.0, 1.0 / 3.0, 1.0}
         };
-        
+
         this.n = pairwiseComparisonMatrix.length;
         
         this.pairwiseComparisonMatrix = new double[n][n];
@@ -44,6 +53,8 @@ public final class AHPCalculation {
         this.jumlahMatriksPenjumlahan = new double[n];
         
         this.priorityVector = new double[n];
+        
+        this.eigenVector = new double[n];
         
         this.jumlahCekKonsistensi = new double[n];
     
@@ -108,31 +119,59 @@ public final class AHPCalculation {
         printArray1D(this.normalizedPairwiseComparisonMatrixSum, "Menjumlah Setiap Baris Matriks Normalized Perbandingan Berpasangan");
         printArray1D(this.priorityVector, "Average Setiap Baris Matriks Normalized Perbandingan Berpasangan");
         
-        for (int row = 0; row < n; row++) {
-            for (int col = 0; col < n; col++) {
-                matriksPenjumlahan[row][col] = pairwiseComparisonMatrix[row][col] * priorityVector[col];
-                jumlahMatriksPenjumlahan[row] += matriksPenjumlahan[row][col];
-            }
-        }
-        printArray2D(this.matriksPenjumlahan, "Matriks Perbandingan Berpasangan Penjumlahan Setiap Baris");
-        printArray1D(this.jumlahMatriksPenjumlahan, "Matriks Perbandingan Berpasangan Penjumlahan Setiap Baris");
         
-        double totalJumlah=0;
+        // Menghitung nilai eigen vector
         for (int row = 0; row < n; row++) {
-            jumlahCekKonsistensi[row] = jumlahMatriksPenjumlahan[row] + priorityVector[row];
-            totalJumlah += jumlahCekKonsistensi[row];
+            this.eigenVector[row] = this.priorityVector[row] * this.pairwiseComparisonMatrixSum[row];
         }
-        printArray1D(this.jumlahCekKonsistensi, "Perhitungan Konsistensi Rasio untuk Kriteria");
- 
+        printArray1D(this.eigenVector, "Nilai eigen vector");
+        
+        
+        double lambdaMax = 0;
+        
+        for (double num : this.eigenVector) {
+            lambdaMax += num;
+        }
+        System.out.println("Nilai lambda max: " + lambdaMax);
+        
+        double CI= (lambdaMax-this.n)/(this.n-1);
+        System.out.println("Nilai CI: " + lambdaMax);
+        
         double ir = this.getConsistencyIndex(n);
-        double lamdaMaks = totalJumlah/n;
-        double CI=(lamdaMaks-n)/(n-1);
-        double CR=CI/ir;
+        
+        double CR= CI/ir;
         if(CR <= 0.1){
             System.out.println("Konsisten");
         }else{
             System.out.println("Tidak Konsisten");
         }  
+        
+//      cara lain
+//        for (int row = 0; row < n; row++) {
+//            for (int col = 0; col < n; col++) {
+//                matriksPenjumlahan[row][col] = pairwiseComparisonMatrix[row][col] * priorityVector[col];
+//                jumlahMatriksPenjumlahan[row] += matriksPenjumlahan[row][col];
+//            }
+//        }
+//        printArray2D(this.matriksPenjumlahan, "Matriks Perbandingan Berpasangan Penjumlahan Setiap Baris");
+//        printArray1D(this.jumlahMatriksPenjumlahan, "Matriks Perbandingan Berpasangan Penjumlahan Setiap Baris");
+//        
+//        double totalJumlah=0;
+//        for (int row = 0; row < n; row++) {
+//            jumlahCekKonsistensi[row] = jumlahMatriksPenjumlahan[row] + priorityVector[row];
+//            totalJumlah += jumlahCekKonsistensi[row];
+//        }
+//        printArray1D(this.jumlahCekKonsistensi, "Perhitungan Konsistensi Rasio untuk Kriteria");
+// 
+//        double ir = this.getConsistencyIndex(n);
+//        double lamdaMaks = totalJumlah/n;
+//        double CI=(lamdaMaks-n)/(n-1);
+//        double CR=CI/ir;
+//        if(CR <= 0.1){
+//            System.out.println("Konsisten");
+//        }else{
+//            System.out.println("Tidak Konsisten");
+//        }  
     }
     
     private double getConsistencyIndex(int n) {
