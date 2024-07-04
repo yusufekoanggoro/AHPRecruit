@@ -676,17 +676,17 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
             candidateFound =  candidateDao.findOneById(Integer.parseInt(id));
             if(candidateFound != null){
                 namaCalonPelamar.setText(candidateFound.getName());
-                
+                System.out.println(ahpCalculation.getPriorityVector()[0]);
                 nilaiAlternatif = candidateFound.getLeadershipScore() * ahpCalculation.getPriorityVector()[0];
                 total += nilaiAlternatif; 
                 
                 nilaiAlternatif = candidateFound.getKnowledgeScore() * ahpCalculation.getPriorityVector()[1];
                 total += nilaiAlternatif;
                 
-                nilaiAlternatif = candidateFound.getTechnicalSkillScore() * ahpCalculation.getPriorityVector()[1];
+                nilaiAlternatif = candidateFound.getTechnicalSkillScore() * ahpCalculation.getPriorityVector()[2];
                 total += nilaiAlternatif; 
                 
-                nilaiAlternatif = candidateFound.getAdvancedSkillScore() * ahpCalculation.getPriorityVector()[1];
+                nilaiAlternatif = candidateFound.getAdvancedSkillScore() * ahpCalculation.getPriorityVector()[3];
                 total += nilaiAlternatif;
                 
                 textFieldTotalNilai.setText(String.valueOf(total));

@@ -77,7 +77,7 @@
 			</staticText>
 			<image onErrorType="Icon">
 				<reportElement key="" x="34" y="3" width="110" height="107" uuid="2c76676b-63bc-493f-8397-a8a78bbc82c3"/>
-				<imageExpression><![CDATA[$P{PATH_IMG}+"Sanba Farma-150x150.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{PATH_IMG}+"mytens-lite.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="222" y="30" width="344" height="30" uuid="24420867-119c-4247-bddc-fc9aa94c8b3b"/>
@@ -91,7 +91,7 @@
 				<textElement textAlignment="Center" markup="none">
 					<font fontName="Times New Roman" size="12" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[Jl. BB No.2-1, RT.06/RW.05, Tegal Parang, Mampang Prapatan, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12790.]]></text>
+				<text><![CDATA[Menara Multimedia, Gambir, Kecamatan Gambir, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta]]></text>
 			</staticText>
 			<line>
 				<reportElement positionType="Float" x="0" y="116" width="802" height="1" uuid="3dca53f9-4a8b-488d-a484-2fbddfa8fea9"/>
@@ -364,7 +364,7 @@
 				<textElement>
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE dd MMMM yyyy", new Locale("id", "ID")).format(new java.util.Date())]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement positionType="Float" x="637" y="137" width="165" height="20" uuid="36646086-3158-4000-96bf-e9bb05734b25"/>
@@ -412,7 +412,7 @@
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
-				<text><![CDATA[(Abdul)]]></text>
+				<text><![CDATA[(Archie Ekaviansyah)]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
