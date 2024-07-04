@@ -18,7 +18,7 @@ import javax.swing.JRootPane;
 public class AHPCalculationDialog extends javax.swing.JDialog {
     protected AHPCalculation ahpCalculation = new AHPCalculation();
     DecimalFormat df = new DecimalFormat("0.000");
-    DecimalFormat df2 = new DecimalFormat("0");
+    DecimalFormat df2 = new DecimalFormat("0.00");
     private final CandidateDao candidateDao;
     private final SelectionDao selectionDao;
     private CandidateModel candidateFound;
@@ -684,7 +684,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                         + ( candidateFound.getKnowledgeScore() * ahpCalculation.getPriorityVector()[1])
                         + (candidateFound.getTechnicalSkillScore() * ahpCalculation.getPriorityVector()[2])
                         + (candidateFound.getAdvancedSkillScore() * ahpCalculation.getPriorityVector()[3]);
-                
+                System.out.println(nilaiAlternatif);
                 textFieldTotalNilai.setText(df2.format(nilaiAlternatif));
                 
                 double [][] pairwiseComparisonMatrix = ahpCalculation.getPairwiseComparisonMatrix();
