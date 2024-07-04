@@ -37,7 +37,7 @@ public class SelectionDaoImpl implements SelectionDao {
             
             pstmt = dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, selection.getUserId());
-            pstmt.setInt(2, selection.getScore());
+            pstmt.setDouble(2, selection.getScore());
             
             return pstmt.executeUpdate();
 	} catch (SQLException e) {
@@ -82,7 +82,7 @@ public class SelectionDaoImpl implements SelectionDao {
                 selection.setId(resultSet.getInt("id"));
                 selection.setName(resultSet.getString("name"));
                 selection.setPhoneNumber(resultSet.getString("phone_number"));
-                selection.setScore(resultSet.getInt("score"));
+                selection.setScore(resultSet.getDouble("score"));
                 selection.setRanking(rank);
                 selections.add(selection);
                 rank++;
@@ -123,7 +123,7 @@ public class SelectionDaoImpl implements SelectionDao {
             
             pstmt = dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstmt.setInt(1, selection.getUserId());
-            pstmt.setInt(2, selection.getScore());
+            pstmt.setDouble(2, selection.getScore());
             
             int result = pstmt.executeUpdate();
             resultSet = pstmt.getGeneratedKeys();

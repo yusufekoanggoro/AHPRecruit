@@ -4,6 +4,8 @@
  */
 package application.utils;
 
+import java.text.DecimalFormat;
+
 /**
  *
  * @author yusuf

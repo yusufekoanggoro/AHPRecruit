@@ -13,11 +13,12 @@ import javax.swing.JRootPane;
 
 /**
  *
- * @author NaufalSholahuddin
+ * @author Yusuf Eko Anggoro
  */
 public class AHPCalculationDialog extends javax.swing.JDialog {
     protected AHPCalculation ahpCalculation = new AHPCalculation();
-    DecimalFormat df = new DecimalFormat("#.##");
+    DecimalFormat df = new DecimalFormat("0.000");
+    DecimalFormat df2 = new DecimalFormat("0");
     private final CandidateDao candidateDao;
     private final SelectionDao selectionDao;
     private CandidateModel candidateFound;
@@ -670,44 +671,39 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private void mulaiHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mulaiHitungActionPerformed
         try{
             String id = cbIdCalonPelamar.getSelectedItem().toString();
-            int total = 0;
             double nilaiAlternatif;
             
             candidateFound =  candidateDao.findOneById(Integer.parseInt(id));
             if(candidateFound != null){
                 namaCalonPelamar.setText(candidateFound.getName());
                 System.out.println(ahpCalculation.getPriorityVector()[0]);
-                nilaiAlternatif = candidateFound.getLeadershipScore() * ahpCalculation.getPriorityVector()[0];
-                total += nilaiAlternatif; 
+                System.out.println(ahpCalculation.getPriorityVector()[1]);
+                System.out.println(ahpCalculation.getPriorityVector()[2]);
+                System.out.println(ahpCalculation.getPriorityVector()[3]);
+                nilaiAlternatif = (candidateFound.getLeadershipScore() * ahpCalculation.getPriorityVector()[0])
+                        + ( candidateFound.getKnowledgeScore() * ahpCalculation.getPriorityVector()[1])
+                        + (candidateFound.getTechnicalSkillScore() * ahpCalculation.getPriorityVector()[2])
+                        + (candidateFound.getAdvancedSkillScore() * ahpCalculation.getPriorityVector()[3]);
                 
-                nilaiAlternatif = candidateFound.getKnowledgeScore() * ahpCalculation.getPriorityVector()[1];
-                total += nilaiAlternatif;
-                
-                nilaiAlternatif = candidateFound.getTechnicalSkillScore() * ahpCalculation.getPriorityVector()[2];
-                total += nilaiAlternatif; 
-                
-                nilaiAlternatif = candidateFound.getAdvancedSkillScore() * ahpCalculation.getPriorityVector()[3];
-                total += nilaiAlternatif;
-                
-                textFieldTotalNilai.setText(String.valueOf(total));
+                textFieldTotalNilai.setText(df2.format(nilaiAlternatif));
                 
                 double [][] pairwiseComparisonMatrix = ahpCalculation.getPairwiseComparisonMatrix();
-                k1k1.setText(df.format(pairwiseComparisonMatrix[0][0]));
-                k1k2.setText(df.format(pairwiseComparisonMatrix[0][1]));
-                k1k3.setText(df.format(pairwiseComparisonMatrix[0][2]));
-                k1k4.setText(df.format(pairwiseComparisonMatrix[0][3]));
+                k1k1.setText(df2.format(pairwiseComparisonMatrix[0][0]));
+                k1k2.setText(df2.format(pairwiseComparisonMatrix[0][1]));
+                k1k3.setText(df2.format(pairwiseComparisonMatrix[0][2]));
+                k1k4.setText(df2.format(pairwiseComparisonMatrix[0][3]));
                 k2k1.setText(df.format(pairwiseComparisonMatrix[1][0]));
-                k2k2.setText(df.format(pairwiseComparisonMatrix[1][1]));
-                k2k3.setText(df.format(pairwiseComparisonMatrix[1][2]));
-                k2k4.setText(df.format(pairwiseComparisonMatrix[1][3]));
+                k2k2.setText(df2.format(pairwiseComparisonMatrix[1][1]));
+                k2k3.setText(df2.format(pairwiseComparisonMatrix[1][2]));
+                k2k4.setText(df2.format(pairwiseComparisonMatrix[1][3]));
                 k3k1.setText(df.format(pairwiseComparisonMatrix[2][0]));
                 k3k2.setText(df.format(pairwiseComparisonMatrix[2][1]));
-                k3k3.setText(df.format(pairwiseComparisonMatrix[2][2]));
-                k3k4.setText(df.format(pairwiseComparisonMatrix[2][3]));
+                k3k3.setText(df2.format(pairwiseComparisonMatrix[2][2]));
+                k3k4.setText(df2.format(pairwiseComparisonMatrix[2][3]));
                 k4k1.setText(df.format(pairwiseComparisonMatrix[3][0]));
                 k4k2.setText(df.format(pairwiseComparisonMatrix[3][1]));
                 k4k3.setText(df.format(pairwiseComparisonMatrix[3][2]));
-                k4k4.setText(df.format(pairwiseComparisonMatrix[3][3]));
+                k4k4.setText(df2.format(pairwiseComparisonMatrix[3][3]));
                 
                 double [][] normalizedPairwiseComparisonMatrix = ahpCalculation.getNormalizedPairwiseComparisonMatrix();
                 k1k1N.setText(df.format(normalizedPairwiseComparisonMatrix[0][0]));
@@ -759,7 +755,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         try{
             SelectionModel newSelection = new SelectionModel();
             newSelection.setUserId(Integer.parseInt(cbIdCalonPelamar.getSelectedItem().toString()));
-            newSelection.setScore(Integer.parseInt(textFieldTotalNilai.getText()));
+            newSelection.setScore(Double.parseDouble(textFieldTotalNilai.getText()));
             
             selectionDao.upsertOne(newSelection);
             JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");

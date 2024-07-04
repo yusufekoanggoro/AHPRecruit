@@ -17,7 +17,7 @@ import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author NaufalSholahuddin
+ * @author Yusuf Eko Anggoro
  */
 public class AddCandidateDialog extends javax.swing.JDialog {
     private final CandidateDao candidateDao;

@@ -11,7 +11,7 @@ package application.models;
 public class SelectionModel {
     private int id;
     private int userId;
-    private int score;
+    private double score;
     private String name;
     private String phoneNumber;
     private int ranking;
@@ -56,11 +56,11 @@ public class SelectionModel {
         this.userId = userId;
     }
 
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(double score) {
         this.score = score;
     }
 
