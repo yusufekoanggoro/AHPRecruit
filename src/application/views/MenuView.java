@@ -15,6 +15,7 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -55,7 +56,11 @@ public class MenuView extends javax.swing.JFrame {
     
     public void start(){
         JFrame frame = new MenuView();
-        frame.setTitle("Menu Frame");
+        frame.setTitle("Menu Utama");
+        
+        UIManager.put("OptionPane.yesButtonText", "Ya");
+        UIManager.put("OptionPane.noButtonText", "Tidak");
+        
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setLocationRelativeTo(null);
@@ -66,8 +71,8 @@ public class MenuView extends javax.swing.JFrame {
 
                 int result = JOptionPane.showConfirmDialog(
                     frame,
-                    "Are you sure you want to exit the application?",
-                    "Exit Application",
+                    "Apakah Anda yakin ingin keluar dari aplikasi?",
+                    "Keluar dari Aplikasi",
                     JOptionPane.YES_NO_OPTION);
 
                 if (result == JOptionPane.YES_OPTION){
@@ -96,6 +101,7 @@ public class MenuView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jPanel5 = new javax.swing.JPanel();
         Menu = new javax.swing.JPanel();
         candidate = new javax.swing.JLabel();
@@ -106,24 +112,23 @@ public class MenuView extends javax.swing.JFrame {
         laporanHasilSeleksi = new javax.swing.JLabel();
         laporan = new javax.swing.JLabel();
         seleksi = new javax.swing.JLabel();
+        logout = new javax.swing.JLabel();
         judul1 = new javax.swing.JLabel();
         Pane = new javax.swing.JPanel();
-        logout = new javax.swing.JLabel();
+        judul2 = new javax.swing.JLabel();
 
-        Home.setBackground(new java.awt.Color(51, 51, 51));
+        Home.setBackground(new java.awt.Color(245, 247, 250));
 
+        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Selamat Datang, di Aplikasi");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Sistem Pendukung Keputusan Penerimaan Karyawan PT Telkom");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Menggunakan Metode AHP");
 
@@ -134,27 +139,29 @@ public class MenuView extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator1)
         );
         HomeLayout.setVerticalGroup(
             HomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HomeLayout.createSequentialGroup()
-                .addGap(130, 130, 130)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(113, 113, 113)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(551, Short.MAX_VALUE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(501, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
 
-        Menu.setBackground(new java.awt.Color(0, 51, 102));
+        Menu.setBackground(new java.awt.Color(45, 49, 74));
         Menu.setMaximumSize(new java.awt.Dimension(32767, 600));
 
-        candidate.setBackground(new java.awt.Color(0, 51, 102));
+        candidate.setBackground(new java.awt.Color(45, 49, 74));
         candidate.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         candidate.setForeground(new java.awt.Color(255, 255, 255));
         candidate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -173,7 +180,7 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        kriteria.setBackground(new java.awt.Color(0, 51, 102));
+        kriteria.setBackground(new java.awt.Color(45, 49, 74));
         kriteria.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         kriteria.setForeground(new java.awt.Color(255, 255, 255));
         kriteria.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -264,7 +271,7 @@ public class MenuView extends javax.swing.JFrame {
                 .addComponent(laporanHasilSeleksi, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        laporan.setBackground(new java.awt.Color(0, 51, 102));
+        laporan.setBackground(new java.awt.Color(45, 49, 74));
         laporan.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         laporan.setForeground(new java.awt.Color(255, 255, 255));
         laporan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -282,7 +289,7 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        seleksi.setBackground(new java.awt.Color(0, 51, 102));
+        seleksi.setBackground(new java.awt.Color(45, 49, 74));
         seleksi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         seleksi.setForeground(new java.awt.Color(255, 255, 255));
         seleksi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -300,46 +307,10 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout MenuLayout = new javax.swing.GroupLayout(Menu);
-        Menu.setLayout(MenuLayout);
-        MenuLayout.setHorizontalGroup(
-            MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(candidate, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-            .addComponent(kriteria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(seleksi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(laporan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(slideMenuLaporan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        MenuLayout.setVerticalGroup(
-            MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuLayout.createSequentialGroup()
-                .addComponent(candidate, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(kriteria, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(seleksi, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(laporan, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(slideMenuLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        judul1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        judul1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        judul1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/mytens-lite.png"))); // NOI18N
-        judul1.setText("   Sistem Pendukung Keputusan Penerimaan Karyawan Metode AHP");
-        judul1.setOpaque(true);
-
-        Pane.setBackground(new java.awt.Color(255, 255, 255));
-        Pane.setMaximumSize(new java.awt.Dimension(1200, 650));
-        Pane.setMinimumSize(new java.awt.Dimension(380, 200));
-        Pane.setPreferredSize(new java.awt.Dimension(600, 570));
-        Pane.setLayout(new java.awt.CardLayout());
-
         logout.setBackground(new java.awt.Color(0, 0, 0));
         logout.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         logout.setForeground(new java.awt.Color(255, 255, 255));
+        logout.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         logout.setText("  Log Out");
         logout.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         logout.setOpaque(true);
@@ -355,29 +326,73 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout MenuLayout = new javax.swing.GroupLayout(Menu);
+        Menu.setLayout(MenuLayout);
+        MenuLayout.setHorizontalGroup(
+            MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(candidate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(kriteria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(seleksi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(laporan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(slideMenuLaporan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        MenuLayout.setVerticalGroup(
+            MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuLayout.createSequentialGroup()
+                .addComponent(candidate, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(kriteria, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(seleksi, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(laporan, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(slideMenuLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        judul1.setBackground(new java.awt.Color(245, 247, 250));
+        judul1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        judul1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        judul1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/logo_200.png"))); // NOI18N
+        judul1.setOpaque(true);
+
+        Pane.setBackground(new java.awt.Color(250, 250, 250));
+        Pane.setMaximumSize(new java.awt.Dimension(1200, 650));
+        Pane.setMinimumSize(new java.awt.Dimension(380, 200));
+        Pane.setPreferredSize(new java.awt.Dimension(600, 570));
+        Pane.setLayout(new java.awt.CardLayout());
+
+        judul2.setBackground(new java.awt.Color(245, 247, 250));
+        judul2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        judul2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        judul2.setText("   Sistem Pendukung Keputusan Penerimaan Karyawan Metode AHP");
+        judul2.setOpaque(true);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(judul1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, 0)
-                .addComponent(Pane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(judul1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Pane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(judul2, javax.swing.GroupLayout.DEFAULT_SIZE, 1014, Short.MAX_VALUE)))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(judul1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(judul1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(judul2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(logout, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Pane, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)))
+                    .addComponent(Pane, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                    .addComponent(Menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -409,13 +424,15 @@ public class MenuView extends javax.swing.JFrame {
 
     private void candidateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_candidateMouseEntered
         // TODO add your handling code here:
-        candidate.setBackground(new Color(51,51,51));
+        candidate.setBackground(new Color(41,44,69));
         candidate.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        candidate.setForeground(new Color(255, 187, 0));
     }//GEN-LAST:event_candidateMouseEntered
 
     private void candidateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_candidateMouseExited
         // TODO add your handling code here:
-        candidate.setBackground(new Color(0,51,102));
+        candidate.setBackground(new Color(45,49,74));
+        candidate.setForeground(Color.white);
     }//GEN-LAST:event_candidateMouseExited
 
     private void kriteriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kriteriaMouseClicked
@@ -432,13 +449,15 @@ public class MenuView extends javax.swing.JFrame {
 
     private void kriteriaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kriteriaMouseEntered
         // TODO add your handling code here:
-        kriteria.setBackground(new Color(51,51,51));
+        kriteria.setBackground(new Color(41,44,69));
         kriteria.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        kriteria.setForeground(new Color(255, 187, 0));
     }//GEN-LAST:event_kriteriaMouseEntered
 
     private void kriteriaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kriteriaMouseExited
         // TODO add your handling code here:
-        kriteria.setBackground(new Color(0,51,102));
+        kriteria.setBackground(new Color(45,49,74));
+        kriteria.setForeground(Color.white);
     }//GEN-LAST:event_kriteriaMouseExited
 
     private void laporanCalonPelamarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanCalonPelamarMouseClicked
@@ -469,11 +488,13 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
         laporanCalonPelamar.setBackground(new Color(51,51,51));
         laporanCalonPelamar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        laporanCalonPelamar.setForeground(new Color(255, 187, 0));
     }//GEN-LAST:event_laporanCalonPelamarMouseEntered
 
     private void laporanCalonPelamarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanCalonPelamarMouseExited
         // TODO add your handling code here:
         laporanCalonPelamar.setBackground(new Color(80,80,80));
+        laporanCalonPelamar.setForeground(Color.white);
     }//GEN-LAST:event_laporanCalonPelamarMouseExited
 
     private void laporanPrioritasKriteriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanPrioritasKriteriaMouseClicked
@@ -504,11 +525,13 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
         laporanPrioritasKriteria.setBackground(new Color(51,51,51));
         laporanPrioritasKriteria.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        laporanPrioritasKriteria.setForeground(new Color(255, 187, 0));
     }//GEN-LAST:event_laporanPrioritasKriteriaMouseEntered
 
     private void laporanPrioritasKriteriaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanPrioritasKriteriaMouseExited
         // TODO add your handling code here:
         laporanPrioritasKriteria.setBackground(new Color(80,80,80));
+        laporanPrioritasKriteria.setForeground(Color.white);
     }//GEN-LAST:event_laporanPrioritasKriteriaMouseExited
 
     private void laporanHasilSeleksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanHasilSeleksiMouseClicked
@@ -539,11 +562,13 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
         laporanHasilSeleksi.setBackground(new Color(51,51,51));
         laporanHasilSeleksi.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        laporanHasilSeleksi.setForeground(new Color(255, 187, 0));
     }//GEN-LAST:event_laporanHasilSeleksiMouseEntered
 
     private void laporanHasilSeleksiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanHasilSeleksiMouseExited
         // TODO add your handling code here:
         laporanHasilSeleksi.setBackground(new Color(80,80,80));
+        laporanHasilSeleksi.setForeground(Color.white);
     }//GEN-LAST:event_laporanHasilSeleksiMouseExited
 
     private void laporanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanMouseClicked
@@ -553,13 +578,15 @@ public class MenuView extends javax.swing.JFrame {
 
     private void laporanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanMouseEntered
         // TODO add your handling code here:
-        laporan.setBackground(new Color(51,51,51));
+        laporan.setBackground(new Color(41,44,69));
         laporan.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        laporan.setForeground(new Color(255, 187, 0));
     }//GEN-LAST:event_laporanMouseEntered
 
     private void laporanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_laporanMouseExited
         // TODO add your handling code here:
-        laporan.setBackground(new Color(0,51,102));
+        laporan.setBackground(new Color(45,49,74));
+        laporan.setForeground(Color.white);
     }//GEN-LAST:event_laporanMouseExited
 
     private void seleksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seleksiMouseClicked
@@ -577,13 +604,15 @@ public class MenuView extends javax.swing.JFrame {
 
     private void seleksiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seleksiMouseEntered
         // TODO add your handling code here:
-        seleksi.setBackground(new Color(51,51,51));
+        seleksi.setBackground(new Color(41,44,69));
         seleksi.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        seleksi.setForeground(new Color(255, 187, 0));
     }//GEN-LAST:event_seleksiMouseEntered
 
     private void seleksiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_seleksiMouseExited
         // TODO add your handling code here:
-        seleksi.setBackground(new Color(0,51,102));
+        seleksi.setBackground(new Color(45,49,74));
+        seleksi.setForeground(Color.white);
     }//GEN-LAST:event_seleksiMouseExited
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
@@ -596,11 +625,13 @@ public class MenuView extends javax.swing.JFrame {
         // TODO add your handling code here:
         logout.setBackground(new Color(51,51,51));
         logout.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        logout.setForeground(new Color(255, 187, 0));
     }//GEN-LAST:event_logoutMouseEntered
 
     private void logoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseExited
         // TODO add your handling code here:
         logout.setBackground(Color.BLACK);
+        logout.setForeground(Color.white);
     }//GEN-LAST:event_logoutMouseExited
 
     /**
@@ -648,7 +679,9 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel judul1;
+    private javax.swing.JLabel judul2;
     private javax.swing.JLabel kriteria;
     private javax.swing.JLabel laporan;
     private javax.swing.JLabel laporanCalonPelamar;

@@ -109,12 +109,14 @@ public class AddCandidateDialog extends javax.swing.JDialog {
         IsiKosong = new javax.swing.JOptionPane();
         Pane = new javax.swing.JPanel();
 
-        tombolEdit.setBackground(new java.awt.Color(0, 51, 102));
+        PanelKandidat.setBackground(new java.awt.Color(250, 250, 250));
+
+        tombolEdit.setBackground(new java.awt.Color(255, 255, 255));
         tombolEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        tombolEdit.setForeground(new java.awt.Color(255, 255, 255));
+        tombolEdit.setForeground(new java.awt.Color(179, 30, 144));
         tombolEdit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tombolEdit.setText("Edit Data");
-        tombolEdit.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tombolEdit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(202, 210, 226)));
         tombolEdit.setOpaque(true);
         tombolEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -294,12 +296,12 @@ public class AddCandidateDialog extends javax.swing.JDialog {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        buttonAdd.setBackground(new java.awt.Color(0, 51, 102));
+        buttonAdd.setBackground(new java.awt.Color(255, 255, 255));
         buttonAdd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        buttonAdd.setForeground(new java.awt.Color(255, 255, 255));
+        buttonAdd.setForeground(new java.awt.Color(179, 30, 144));
         buttonAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         buttonAdd.setText("Tambah Data");
-        buttonAdd.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        buttonAdd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(202, 210, 226)));
         buttonAdd.setOpaque(true);
         buttonAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -416,13 +418,13 @@ public class AddCandidateDialog extends javax.swing.JDialog {
 
     private void buttonAddMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddMouseEntered
         // TODO add your handling code here:
-        buttonAdd.setBackground(new Color(0,51,153));
+        buttonAdd.setBackground(new Color(250, 239, 245));
         buttonAdd.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_buttonAddMouseEntered
 
     private void buttonAddMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddMouseExited
         // TODO add your handling code here:
-        buttonAdd.setBackground(new Color(0,51,102));
+        buttonAdd.setBackground(Color.white);
     }//GEN-LAST:event_buttonAddMouseExited
 
     private void tombolEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tombolEditMouseClicked
@@ -475,13 +477,13 @@ public class AddCandidateDialog extends javax.swing.JDialog {
 
     private void tombolEditMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tombolEditMouseEntered
         // TODO add your handling code here:
-        tombolEdit.setBackground(new Color(0,51,153));
+        tombolEdit.setBackground(new Color(250, 239, 245));
         tombolEdit.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_tombolEditMouseEntered
 
     private void tombolEditMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tombolEditMouseExited
         // TODO add your handling code here:
-        tombolEdit.setBackground(new Color(0,51,102));
+        tombolEdit.setBackground(Color.white);
     }//GEN-LAST:event_tombolEditMouseExited
 
     private void cbPendidikanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPendidikanActionPerformed

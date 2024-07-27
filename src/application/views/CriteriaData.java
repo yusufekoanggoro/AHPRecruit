@@ -18,6 +18,7 @@ import javax.swing.RowSorter;
 import javax.swing.SortOrder;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import java.awt.Color;
 
 /**
  *
@@ -34,6 +35,8 @@ public class CriteriaData extends javax.swing.JPanel {
         initComponents();
         this.criteriaDao = new CriteriaDaoImpl();
         this.loadTable();
+        buttonSave.setBackground(Color.white);
+        buttonEdit.setBackground(Color.white);
     }
     
     protected void clearForm(){
@@ -96,10 +99,12 @@ public class CriteriaData extends javax.swing.JPanel {
         comboBoxCriteria3 = new javax.swing.JComboBox<>();
         comboBoxCriteria4 = new javax.swing.JComboBox<>();
 
-        judul.setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(245, 247, 250));
+
+        judul.setBackground(new java.awt.Color(45, 49, 74));
         judul.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        judul.setForeground(new java.awt.Color(0, 51, 153));
-        judul.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        judul.setForeground(new java.awt.Color(255, 187, 0));
+        judul.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         judul.setText("  Pengaturan Bobot Kepentingan Kriteria");
         judul.setOpaque(true);
 
@@ -153,30 +158,55 @@ public class CriteriaData extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        buttonSave.setBackground(new java.awt.Color(0, 51, 102));
-        buttonSave.setForeground(new java.awt.Color(255, 255, 255));
+        buttonSave.setFont(new java.awt.Font("Liberation Sans", 1, 13)); // NOI18N
+        buttonSave.setForeground(new java.awt.Color(179, 30, 114));
         buttonSave.setText("Simpan");
-        buttonSave.setBorder(null);
+        buttonSave.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(202, 210, 226)));
+        buttonSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonSaveMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonSaveMouseExited(evt);
+            }
+        });
         buttonSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSaveActionPerformed(evt);
             }
         });
 
-        buttonEdit.setBackground(new java.awt.Color(0, 51, 102));
-        buttonEdit.setForeground(new java.awt.Color(255, 255, 255));
+        buttonEdit.setFont(new java.awt.Font("Liberation Sans", 1, 13)); // NOI18N
+        buttonEdit.setForeground(new java.awt.Color(179, 30, 144));
         buttonEdit.setText("Edit");
-        buttonEdit.setBorder(null);
+        buttonEdit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(202, 210, 226)));
+        buttonEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonEditMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonEditMouseExited(evt);
+            }
+        });
         buttonEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditActionPerformed(evt);
             }
         });
 
-        buttonDelete.setBackground(new java.awt.Color(102, 0, 0));
+        buttonDelete.setBackground(new java.awt.Color(179, 30, 114));
+        buttonDelete.setFont(new java.awt.Font("Liberation Sans", 1, 13)); // NOI18N
         buttonDelete.setForeground(new java.awt.Color(255, 255, 255));
         buttonDelete.setText("Hapus");
         buttonDelete.setBorder(null);
+        buttonDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonDeleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonDeleteMouseExited(evt);
+            }
+        });
         buttonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDeleteActionPerformed(evt);
@@ -256,7 +286,7 @@ public class CriteriaData extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
+                        .addGap(58, 58, 58)
                         .addComponent(buttonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -271,8 +301,9 @@ public class CriteriaData extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonSave, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
 
@@ -281,7 +312,7 @@ public class CriteriaData extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(40, 40, 40)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -291,7 +322,7 @@ public class CriteriaData extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -403,6 +434,36 @@ public class CriteriaData extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,"Data Gagal DiHapus " + e);
         }
     }//GEN-LAST:event_buttonDeleteActionPerformed
+
+    private void buttonDeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDeleteMouseEntered
+        // TODO add your handling code here:
+        buttonDelete.setBackground(new Color(132, 0, 74));
+    }//GEN-LAST:event_buttonDeleteMouseEntered
+
+    private void buttonDeleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDeleteMouseExited
+        // TODO add your handling code here:
+        buttonDelete.setBackground(new Color(179, 30, 114));
+    }//GEN-LAST:event_buttonDeleteMouseExited
+
+    private void buttonSaveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSaveMouseEntered
+        // TODO add your handling code here:
+        buttonSave.setBackground(new Color(250, 239, 245));
+    }//GEN-LAST:event_buttonSaveMouseEntered
+
+    private void buttonSaveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSaveMouseExited
+        // TODO add your handling code here:
+        buttonSave.setBackground(Color.white);
+    }//GEN-LAST:event_buttonSaveMouseExited
+
+    private void buttonEditMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEditMouseEntered
+        // TODO add your handling code here:
+        buttonEdit.setBackground(new Color(250, 239, 245));
+    }//GEN-LAST:event_buttonEditMouseEntered
+
+    private void buttonEditMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEditMouseExited
+        // TODO add your handling code here:
+        buttonEdit.setBackground(Color.white);
+    }//GEN-LAST:event_buttonEditMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonDelete;

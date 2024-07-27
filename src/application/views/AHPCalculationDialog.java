@@ -7,6 +7,7 @@ import application.models.CandidateModel;
 import application.daoimpl.SelectionDaoImpl;
 import application.models.SelectionModel;
 import application.utils.AHPCalculation;
+import java.awt.Color;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
@@ -18,7 +19,7 @@ import javax.swing.JRootPane;
 public class AHPCalculationDialog extends javax.swing.JDialog {
     protected AHPCalculation ahpCalculation = new AHPCalculation();
     DecimalFormat df = new DecimalFormat("0.000");
-    DecimalFormat df2 = new DecimalFormat("0.00");
+    DecimalFormat df2 = new DecimalFormat("0.000");
     private final CandidateDao candidateDao;
     private final SelectionDao selectionDao;
     private CandidateModel candidateFound;
@@ -41,6 +42,8 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         for (CandidateModel item : candidateDao.findAll()) {
             cbIdCalonPelamar.addItem(String.valueOf(item.getId()));
         }
+        mulaiHitung.setBackground(Color.white);
+        Simpan.setBackground(Color.white);
         
     }
     
@@ -130,6 +133,8 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         namaCalonPelamar = new javax.swing.JTextField();
         Pane = new javax.swing.JPanel();
 
+        PanelPerhitungan.setMinimumSize(new java.awt.Dimension(945, 525));
+
         judul.setBackground(new java.awt.Color(51, 51, 51));
         judul.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         judul.setForeground(new java.awt.Color(255, 255, 255));
@@ -147,10 +152,18 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
             }
         });
 
-        mulaiHitung.setBackground(new java.awt.Color(102, 0, 0));
         mulaiHitung.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        mulaiHitung.setForeground(new java.awt.Color(255, 255, 255));
+        mulaiHitung.setForeground(new java.awt.Color(179, 30, 144));
         mulaiHitung.setText("Mulai Hitung");
+        mulaiHitung.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(202, 210, 226)));
+        mulaiHitung.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                mulaiHitungMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                mulaiHitungMouseExited(evt);
+            }
+        });
         mulaiHitung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mulaiHitungActionPerformed(evt);
@@ -554,10 +567,18 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
 
         textFieldTotalNilai.setEditable(false);
 
-        Simpan.setBackground(new java.awt.Color(0, 51, 102));
         Simpan.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        Simpan.setForeground(new java.awt.Color(255, 255, 255));
+        Simpan.setForeground(new java.awt.Color(179, 30, 144));
         Simpan.setText("Simpan Data");
+        Simpan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(202, 210, 226)));
+        Simpan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                SimpanMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                SimpanMouseExited(evt);
+            }
+        });
         Simpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SimpanActionPerformed(evt);
@@ -646,11 +667,15 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
             .addGroup(PanelPerhitunganLayout.createSequentialGroup()
                 .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(945, 600));
+        setSize(new java.awt.Dimension(945, 0));
 
+        Pane.setMinimumSize(new java.awt.Dimension(945, 525));
+        Pane.setPreferredSize(new java.awt.Dimension(945, 525));
         Pane.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -764,6 +789,26 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Data Gagal Disimpan "+e);
         }
     }//GEN-LAST:event_SimpanActionPerformed
+
+    private void mulaiHitungMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mulaiHitungMouseEntered
+        // TODO add your handling code here:
+        mulaiHitung.setBackground(new Color(250, 239, 245));
+    }//GEN-LAST:event_mulaiHitungMouseEntered
+
+    private void mulaiHitungMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mulaiHitungMouseExited
+        // TODO add your handling code here:
+        mulaiHitung.setBackground(Color.white);
+    }//GEN-LAST:event_mulaiHitungMouseExited
+
+    private void SimpanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SimpanMouseEntered
+        // TODO add your handling code here:
+        Simpan.setBackground(new Color(250, 239, 245));
+    }//GEN-LAST:event_SimpanMouseEntered
+
+    private void SimpanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SimpanMouseExited
+        // TODO add your handling code here:
+        Simpan.setBackground(Color.white);
+    }//GEN-LAST:event_SimpanMouseExited
 
     /**
      * @param args the command line arguments

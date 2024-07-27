@@ -8,6 +8,7 @@ import application.dao.SelectionDao;
 import application.daoimpl.SelectionDaoImpl;
 import application.models.SelectionModel;
 import application.models.SelectionTableModel;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -30,6 +31,7 @@ public class SelectionData extends javax.swing.JPanel {
         initComponents();
         selectionDao = new SelectionDaoImpl();
         this.loadTable();
+        tombolLihatPerhitunganAHP.setBackground(Color.white);
     }
     
     public void loadTable() {
@@ -38,14 +40,14 @@ public class SelectionData extends javax.swing.JPanel {
         
         tableRanking.setModel(selectionTableModel);
         
-        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tableRanking.getModel());
-        tableRanking.setRowSorter(sorter);
-
-        List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
-        sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
-        sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
-        sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
-        sorter.setSortKeys(sortKeys);
+//        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tableRanking.getModel());
+//        tableRanking.setRowSorter(sorter);
+//
+//        List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+//        sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+//        sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
+//        sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
+//        sorter.setSortKeys(sortKeys);
     }
 
     /**
@@ -69,10 +71,12 @@ public class SelectionData extends javax.swing.JPanel {
         buttonDelete = new javax.swing.JButton();
         tombolLihatPerhitunganAHP = new javax.swing.JButton();
 
-        judul.setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(245, 247, 250));
+
+        judul.setBackground(new java.awt.Color(45, 49, 74));
         judul.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        judul.setForeground(new java.awt.Color(0, 51, 153));
-        judul.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        judul.setForeground(new java.awt.Color(255, 187, 0));
+        judul.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         judul.setText("  Ranking Hasil Seleksi Calon Pelamar");
         judul.setOpaque(true);
 
@@ -140,22 +144,37 @@ public class SelectionData extends javax.swing.JPanel {
                 .addGap(0, 30, Short.MAX_VALUE))
         );
 
-        buttonDelete.setBackground(new java.awt.Color(0, 51, 102));
+        buttonDelete.setBackground(new java.awt.Color(179, 30, 114));
         buttonDelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonDelete.setForeground(new java.awt.Color(255, 255, 255));
         buttonDelete.setText("Hapus");
         buttonDelete.setBorder(null);
+        buttonDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonDeleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonDeleteMouseExited(evt);
+            }
+        });
         buttonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDeleteActionPerformed(evt);
             }
         });
 
-        tombolLihatPerhitunganAHP.setBackground(new java.awt.Color(102, 0, 0));
         tombolLihatPerhitunganAHP.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        tombolLihatPerhitunganAHP.setForeground(new java.awt.Color(255, 255, 255));
+        tombolLihatPerhitunganAHP.setForeground(new java.awt.Color(179, 30, 144));
         tombolLihatPerhitunganAHP.setText("Mulai Penilaian Calon Pelamar Metode AHP");
-        tombolLihatPerhitunganAHP.setBorder(null);
+        tombolLihatPerhitunganAHP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(202, 210, 226)));
+        tombolLihatPerhitunganAHP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tombolLihatPerhitunganAHPMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tombolLihatPerhitunganAHPMouseExited(evt);
+            }
+        });
         tombolLihatPerhitunganAHP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tombolLihatPerhitunganAHPActionPerformed(evt);
@@ -200,15 +219,15 @@ public class SelectionData extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(judul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(40, 40, 40)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(191, 191, 191))
         );
@@ -244,6 +263,26 @@ public class SelectionData extends javax.swing.JPanel {
         dialog.show();
         loadTable();
     }//GEN-LAST:event_tombolLihatPerhitunganAHPActionPerformed
+
+    private void buttonDeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDeleteMouseEntered
+        // TODO add your handling code here:
+        buttonDelete.setBackground(new Color(132, 0, 74));
+    }//GEN-LAST:event_buttonDeleteMouseEntered
+
+    private void buttonDeleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDeleteMouseExited
+        // TODO add your handling code here:
+        buttonDelete.setBackground(new Color(179, 30, 114));
+    }//GEN-LAST:event_buttonDeleteMouseExited
+
+    private void tombolLihatPerhitunganAHPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tombolLihatPerhitunganAHPMouseEntered
+        // TODO add your handling code here:
+        tombolLihatPerhitunganAHP.setBackground(new Color(250, 239, 245));
+    }//GEN-LAST:event_tombolLihatPerhitunganAHPMouseEntered
+
+    private void tombolLihatPerhitunganAHPMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tombolLihatPerhitunganAHPMouseExited
+        // TODO add your handling code here:
+        tombolLihatPerhitunganAHP.setBackground(Color.white);
+    }//GEN-LAST:event_tombolLihatPerhitunganAHPMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

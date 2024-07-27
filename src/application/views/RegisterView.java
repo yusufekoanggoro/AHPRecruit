@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -42,8 +43,12 @@ public class RegisterView extends javax.swing.JFrame {
     
     public void start(){
         JFrame frame = new RegisterView();
-        frame.setTitle("Register Frame");
+        frame.setTitle("Halaman Register");
 //        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        UIManager.put("OptionPane.yesButtonText", "Ya");
+        UIManager.put("OptionPane.noButtonText", "Tidak");
+
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.addWindowListener(new WindowAdapter() {
@@ -53,8 +58,8 @@ public class RegisterView extends javax.swing.JFrame {
 
                 int result = JOptionPane.showConfirmDialog(
                     frame,
-                    "Are you sure you want to exit the application?",
-                    "Exit Application",
+                    "Apakah Anda yakin ingin keluar dari aplikasi?",
+                    "Keluar dari Aplikasi",
                     JOptionPane.YES_NO_OPTION);
 
                 if (result == JOptionPane.YES_OPTION){
@@ -82,7 +87,9 @@ public class RegisterView extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(this, "Berhasil Register Akun!");
             clearForm();
-            textFieldEmail.requestFocus();   
+            textFieldEmail.requestFocus();
+            this.dispose();
+            new LoginView().start();
         }catch (Exception e){
             JOptionPane.showMessageDialog(this, "Gagal Register");
         }
@@ -123,7 +130,9 @@ public class RegisterView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/mytens-lite.png"))); // NOI18N
+        jPanel3.setBackground(new java.awt.Color(245, 247, 250));
+
+        logo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/logo_200.png"))); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Aplikasi Sistem Pendukung Keputusan");
@@ -142,18 +151,18 @@ public class RegisterView extends javax.swing.JFrame {
                         .addComponent(jLabel10))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(logo1)))
+                        .addComponent(jLabel11)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(logo1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(101, 101, 101)
+                .addGap(99, 99, 99)
                 .addComponent(logo1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel10)
@@ -162,7 +171,7 @@ public class RegisterView extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
         );
 
-        jPanel4.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel4.setBackground(new java.awt.Color(45, 49, 74));
 
         butonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/images/back.png"))); // NOI18N
         butonBack.setText("Back");
@@ -288,8 +297,7 @@ public class RegisterView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

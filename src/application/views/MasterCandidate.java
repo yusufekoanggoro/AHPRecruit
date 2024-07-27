@@ -10,6 +10,7 @@ import application.daoimpl.CandidateDaoImpl;
 import application.daoimpl.SelectionDaoImpl;
 import application.models.CandidateModel;
 import application.models.CandidateTableModel;
+import java.awt.Color;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public class MasterCandidate extends javax.swing.JPanel {
         this.candidateDao = new CandidateDaoImpl();
         this.selectionDao = new SelectionDaoImpl();
         this.loadTable();
+        buttonEdit.setBackground(Color.white);
+        buttonAdd.setBackground(Color.white);
     }
     
     private void getDataTabel(){
@@ -94,10 +97,12 @@ public class MasterCandidate extends javax.swing.JPanel {
         buttonDelete = new javax.swing.JButton();
         note = new javax.swing.JLabel();
 
-        title.setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(245, 247, 250));
+
+        title.setBackground(new java.awt.Color(45, 49, 74));
         title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        title.setForeground(new java.awt.Color(0, 51, 153));
-        title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        title.setForeground(new java.awt.Color(255, 187, 0));
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("  Data Calon Pelamar");
         title.setOpaque(true);
 
@@ -127,33 +132,55 @@ public class MasterCandidate extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableCandidate);
 
-        buttonAdd.setBackground(new java.awt.Color(0, 51, 102));
         buttonAdd.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        buttonAdd.setForeground(new java.awt.Color(255, 255, 255));
+        buttonAdd.setForeground(new java.awt.Color(179, 30, 144));
         buttonAdd.setText("Tambah Data Calon Pelamar");
-        buttonAdd.setBorder(null);
+        buttonAdd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(202, 210, 226)));
+        buttonAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonAddMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonAddMouseExited(evt);
+            }
+        });
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddActionPerformed(evt);
             }
         });
 
-        buttonEdit.setBackground(new java.awt.Color(0, 51, 102));
         buttonEdit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        buttonEdit.setForeground(new java.awt.Color(255, 255, 255));
+        buttonEdit.setForeground(new java.awt.Color(179, 30, 144));
         buttonEdit.setText("Edit");
-        buttonEdit.setBorder(null);
+        buttonEdit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(202, 210, 226)));
+        buttonEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonEditMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonEditMouseExited(evt);
+            }
+        });
         buttonEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEditActionPerformed(evt);
             }
         });
 
-        buttonDelete.setBackground(new java.awt.Color(102, 0, 0));
+        buttonDelete.setBackground(new java.awt.Color(179, 30, 114));
         buttonDelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonDelete.setForeground(new java.awt.Color(255, 255, 255));
         buttonDelete.setText("Hapus");
         buttonDelete.setBorder(null);
+        buttonDelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonDeleteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonDeleteMouseExited(evt);
+            }
+        });
         buttonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDeleteActionPerformed(evt);
@@ -211,17 +238,17 @@ public class MasterCandidate extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(40, 40, 40)
                 .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addComponent(Panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(239, 239, 239))
+                .addGap(218, 218, 218))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -249,7 +276,7 @@ public class MasterCandidate extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonEditActionPerformed
 
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
-        // TODO add your handling code here:        
+        // TODO add your handling code here:
         try{
             if(id != null){
                 int ok = JOptionPane.showConfirmDialog(null,"hapus","Konfirmasi Dialog",JOptionPane.YES_NO_OPTION);
@@ -260,7 +287,7 @@ public class MasterCandidate extends javax.swing.JPanel {
                         loadTable();
                         System.out.println(id);
                         selectionDao.deleteByUserId(Integer.parseInt(id));
-                        
+
                         id = null;
                         addCandidateDialog.clearForm();
                     }else{
@@ -274,6 +301,36 @@ public class MasterCandidate extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Gagal Menghapus Data");
         }
     }//GEN-LAST:event_buttonDeleteActionPerformed
+
+    private void buttonEditMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEditMouseEntered
+        // TODO add your handling code here:
+        buttonEdit.setBackground(new Color(250, 239, 245));
+    }//GEN-LAST:event_buttonEditMouseEntered
+
+    private void buttonEditMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonEditMouseExited
+        // TODO add your handling code here:
+        buttonEdit.setBackground(Color.white);
+    }//GEN-LAST:event_buttonEditMouseExited
+
+    private void buttonDeleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDeleteMouseEntered
+        // TODO add your handling code here:
+        buttonDelete.setBackground(new Color(132, 0, 74));
+    }//GEN-LAST:event_buttonDeleteMouseEntered
+
+    private void buttonDeleteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonDeleteMouseExited
+        // TODO add your handling code here:
+        buttonDelete.setBackground(new Color(179, 30, 114));
+    }//GEN-LAST:event_buttonDeleteMouseExited
+
+    private void buttonAddMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddMouseEntered
+        // TODO add your handling code here:
+        buttonAdd.setBackground(new Color(250, 239, 245));
+    }//GEN-LAST:event_buttonAddMouseEntered
+
+    private void buttonAddMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddMouseExited
+        // TODO add your handling code here:
+        buttonAdd.setBackground(Color.white);
+    }//GEN-LAST:event_buttonAddMouseExited
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel;
