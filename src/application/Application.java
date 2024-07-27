@@ -20,11 +20,11 @@ public class Application {
     public static void main(String[] args) {
         // TODO code application logic here        
         try {
-            Config.load();
+//            Config.load();
             DatabaseUtil.getInstance().getConnection();
 
-//            new LoginView().start();
-            new MenuView().start();
+            new LoginView().start();
+//            new MenuView().start();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

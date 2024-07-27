@@ -316,7 +316,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Times New Roman" size="10" isBold="true"/>
 								</textElement>
-								<text><![CDATA[Technical Skill]]></text>
+								<text><![CDATA[Kemampuan Teknik]]></text>
 							</staticText>
 						</jr:tableHeader>
 						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
@@ -340,7 +340,7 @@
 								<textElement textAlignment="Center" verticalAlignment="Middle">
 									<font fontName="Times New Roman" size="10" isBold="true"/>
 								</textElement>
-								<text><![CDATA[Advanced Skill]]></text>
+								<text><![CDATA[Kemampuan Lanjutan]]></text>
 							</staticText>
 						</jr:tableHeader>
 						<jr:tableFooter style="table_TH" height="0" rowSpan="1"/>
