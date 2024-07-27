@@ -86,7 +86,7 @@
 				<textElement textAlignment="Center" markup="none">
 					<font fontName="Times New Roman" size="18" isBold="true" isItalic="false" pdfFontName="Helvetica"/>
 				</textElement>
-				<text><![CDATA[Laporan Hasil Seleksi Calon Pelamar]]></text>
+				<text><![CDATA[Laporan Hasil Seleksi]]></text>
 			</staticText>
 			<staticText>
 				<reportElement positionType="Float" x="0" y="35" width="46" height="23" uuid="67da95e1-9474-4994-b2ec-9f6c29c9cbf2"/>
@@ -300,7 +300,7 @@
 				<textElement textAlignment="Left" markup="none">
 					<font fontName="Times New Roman" size="10" isItalic="false"/>
 				</textElement>
-				<text><![CDATA[tertinggi merupakan calon pelamar potensi terbaik untuk diterima sebagai karyawan baru paruh waktu.]]></text>
+				<text><![CDATA[tertinggi merupakan calon pelamar potensi terbaik untuk diterima sebagai karyawan baru.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement positionType="Float" x="23" y="116" width="144" height="15" uuid="5ac26a25-715d-4fc6-9c43-5fe17a660121"/>
