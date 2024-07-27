@@ -181,6 +181,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         jLabel6.setText("K4");
 
         k1k1.setEditable(false);
+        k1k1.setBackground(new java.awt.Color(245, 247, 250));
         k1k1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         k1k2.setEditable(false);
@@ -196,6 +197,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         k2k1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         k2k2.setEditable(false);
+        k2k2.setBackground(new java.awt.Color(245, 247, 250));
         k2k2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         k2k3.setEditable(false);
@@ -211,6 +213,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         k3k2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         k3k3.setEditable(false);
+        k3k3.setBackground(new java.awt.Color(245, 247, 250));
         k3k3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         k3k4.setEditable(false);
@@ -226,6 +229,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         k4k3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         k4k4.setEditable(false);
+        k4k4.setBackground(new java.awt.Color(245, 247, 250));
         k4k4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel7.setText("K1");
@@ -606,10 +610,10 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(mulaiHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel22)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel27))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel27)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(namaCalonPelamar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)

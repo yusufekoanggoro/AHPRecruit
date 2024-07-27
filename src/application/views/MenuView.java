@@ -117,7 +117,7 @@ public class MenuView extends javax.swing.JFrame {
         Pane = new javax.swing.JPanel();
         judul2 = new javax.swing.JLabel();
 
-        Home.setBackground(new java.awt.Color(245, 247, 250));
+        Home.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N

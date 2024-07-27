@@ -54,6 +54,10 @@ public class AddCandidateDialog extends javax.swing.JDialog {
         textFieldTechnicalSkillScore.setText(technicalSkillScore);
         textFieldAdvancedSkillScore.setText(advancedSkillScore);
     }
+
+    public void setTitleFrame(String title){
+        judul.setText(title);
+    }
     
     protected void clearForm(){
         textFieldId.setText("");

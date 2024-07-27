@@ -23,8 +23,8 @@ public class Application {
 //            Config.load();
             DatabaseUtil.getInstance().getConnection();
 
-            new LoginView().start();
-//            new MenuView().start();
+//            new LoginView().start();
+            new MenuView().start();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
