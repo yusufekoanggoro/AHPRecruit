@@ -9,6 +9,7 @@ import application.models.SelectionModel;
 import application.utils.AHPCalculation;
 import java.awt.Color;
 import java.text.DecimalFormat;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
 
@@ -49,6 +50,99 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     
     void clearForm(){
         textFieldTotalNilai.setText("");
+    }
+    
+    private void calculateComparisonCriteriaMatrix(){
+        try {
+            List<CandidateModel> candidatesFound = this.candidateDao.findAll();
+            
+            int size = candidatesFound.size();
+            
+            
+            int[][] criterias = new int[4][size];
+            
+            for (int row = 0; row < 4; row++) {
+                for (int col = 0; col < size; col++) {
+                    if(row == 0){
+                        criterias[row][col] = candidatesFound.get(col).getLeadershipScore();
+                    }else if(row == 1){
+                        criterias[row][col] = candidatesFound.get(col).getKnowledgeScore();
+                    }else if(row == 2){
+                        criterias[row][col] = candidatesFound.get(col).getTechnicalSkillScore();
+                    }else{
+                        criterias[row][col] = candidatesFound.get(col).getAdvancedSkillScore();
+                    }
+                }
+            }
+            
+            System.out.println("\n[#" + "LOOP ALTERNATIF TERHADAP MASING-MASING KRITERIA" +"]");
+            for (int criteria = 0; criteria < criterias.length; criteria++) {
+                
+                if(criteria == 0){
+                    System.out.println("Perhitungan Alternatif Terhadap Masing-masing Kriteria Nilai Kepemimpinan");
+                } else if(criteria == 1){
+                    System.out.println("Perhitungan Alternatif Terhadap Masing-masing Kriteria Nilai Pengetahuan");
+                }else if(criteria == 2){
+                    System.out.println("Perhitungan Alternatif Terhadap Masing-masing Kriteria Nilai Kemampuan Teknis");
+                }else{
+                    System.out.println("Perhitungan Alternatif Terhadap Masing-masing Kriteria Nilai Kemampuan Lanjutan");
+                }
+                
+                int[] scores = criterias[criteria];
+                
+                double[][] alternativeScoreMatrix = new double[size][size];
+                
+                double[] totalColumnAlternativeScoreMatrix = new double[size];
+                
+                // Mengisi matriks perbandingan pasangan
+                for (int row = 0; row < size; row++) {
+                    for (int col = 0; col < size; col++) {
+                        alternativeScoreMatrix[row][col] = (double) scores[row] / scores[col];
+                        totalColumnAlternativeScoreMatrix[col] += alternativeScoreMatrix[row][col];
+                    }
+                }
+            
+                for (double num : totalColumnAlternativeScoreMatrix) {
+                    System.out.print(num + " ");
+                }
+            
+                printArray2D(alternativeScoreMatrix, "RES alternativeScoreMatrix");
+
+                double[][] normalizedAlternativeScoreMatrix = new double[size][size];
+                double[] normalizedAlternativeScoreMatrixSum = new double[size];
+                double[] priorityVector = new double[size];
+
+                // Calculate the normalized matrix and column sums
+                for (int row = 0; row < alternativeScoreMatrix.length; row++) {
+                    for (int col = 0; col < alternativeScoreMatrix.length; col++) {
+                        normalizedAlternativeScoreMatrix[row][col] = alternativeScoreMatrix[row][col] / totalColumnAlternativeScoreMatrix[col];
+                        normalizedAlternativeScoreMatrixSum[row] += normalizedAlternativeScoreMatrix[row][col];
+                        priorityVector[row] = normalizedAlternativeScoreMatrixSum[row] / size; // atau rata-rata
+                    }
+                }
+
+                printArray2D(normalizedAlternativeScoreMatrix, "RES normalizedAlternativeScoreMatrix");
+
+                for (double num : priorityVector) {
+                    System.out.println(num + " === ");
+                }
+                System.out.println();
+            }
+           
+        
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
+    
+    public void printArray2D(double[][] array, String title) {
+        System.out.println("\n[#" + title +"]");
+        for (double[] array1 : array) {
+            for (int j = 0; j < array1.length; j++) {
+                System.out.print(array1[j] + " ");
+            }
+            System.out.println();
+        }
     }
     
     /**
@@ -699,65 +793,66 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     //tombol mulai perhitungan
     private void mulaiHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mulaiHitungActionPerformed
         try{
-            String id = cbIdCalonPelamar.getSelectedItem().toString();
-            double nilaiAlternatif;
-            
-            candidateFound =  candidateDao.findOneById(Integer.parseInt(id));
-            if(candidateFound != null){
-                namaCalonPelamar.setText(candidateFound.getName());
-                System.out.println(ahpCalculation.getPriorityVector()[0]);
-                System.out.println(ahpCalculation.getPriorityVector()[1]);
-                System.out.println(ahpCalculation.getPriorityVector()[2]);
-                System.out.println(ahpCalculation.getPriorityVector()[3]);
-                nilaiAlternatif = (candidateFound.getLeadershipScore() * ahpCalculation.getPriorityVector()[0])
-                        + ( candidateFound.getKnowledgeScore() * ahpCalculation.getPriorityVector()[1])
-                        + (candidateFound.getTechnicalSkillScore() * ahpCalculation.getPriorityVector()[2])
-                        + (candidateFound.getAdvancedSkillScore() * ahpCalculation.getPriorityVector()[3]);
-                System.out.println(nilaiAlternatif);
-                textFieldTotalNilai.setText(df2.format(nilaiAlternatif));
-                
-                double [][] pairwiseComparisonMatrix = ahpCalculation.getPairwiseComparisonMatrix();
-                k1k1.setText(df2.format(pairwiseComparisonMatrix[0][0]));
-                k1k2.setText(df2.format(pairwiseComparisonMatrix[0][1]));
-                k1k3.setText(df2.format(pairwiseComparisonMatrix[0][2]));
-                k1k4.setText(df2.format(pairwiseComparisonMatrix[0][3]));
-                k2k1.setText(df.format(pairwiseComparisonMatrix[1][0]));
-                k2k2.setText(df2.format(pairwiseComparisonMatrix[1][1]));
-                k2k3.setText(df2.format(pairwiseComparisonMatrix[1][2]));
-                k2k4.setText(df2.format(pairwiseComparisonMatrix[1][3]));
-                k3k1.setText(df.format(pairwiseComparisonMatrix[2][0]));
-                k3k2.setText(df.format(pairwiseComparisonMatrix[2][1]));
-                k3k3.setText(df2.format(pairwiseComparisonMatrix[2][2]));
-                k3k4.setText(df2.format(pairwiseComparisonMatrix[2][3]));
-                k4k1.setText(df.format(pairwiseComparisonMatrix[3][0]));
-                k4k2.setText(df.format(pairwiseComparisonMatrix[3][1]));
-                k4k3.setText(df.format(pairwiseComparisonMatrix[3][2]));
-                k4k4.setText(df2.format(pairwiseComparisonMatrix[3][3]));
-                
-                double [][] normalizedPairwiseComparisonMatrix = ahpCalculation.getNormalizedPairwiseComparisonMatrix();
-                k1k1N.setText(df.format(normalizedPairwiseComparisonMatrix[0][0]));
-                k1k2N.setText(df.format(normalizedPairwiseComparisonMatrix[0][1]));
-                k1k3N.setText(df.format(normalizedPairwiseComparisonMatrix[0][2]));
-                k1k4N.setText(df.format(normalizedPairwiseComparisonMatrix[0][3]));
-                k2k1N.setText(df.format(normalizedPairwiseComparisonMatrix[1][0]));
-                k2k2N.setText(df.format(normalizedPairwiseComparisonMatrix[1][1]));
-                k2k3N.setText(df.format(normalizedPairwiseComparisonMatrix[1][2]));
-                k2k4N.setText(df.format(normalizedPairwiseComparisonMatrix[1][3]));
-                k3k1N.setText(df.format(normalizedPairwiseComparisonMatrix[2][0]));
-                k3k2N.setText(df.format(normalizedPairwiseComparisonMatrix[2][1]));
-                k3k3N.setText(df.format(normalizedPairwiseComparisonMatrix[2][2]));
-                k3k4N.setText(df.format(normalizedPairwiseComparisonMatrix[2][3]));
-                k4k1N.setText(df.format(normalizedPairwiseComparisonMatrix[3][0]));
-                k4k2N.setText(df.format(normalizedPairwiseComparisonMatrix[3][1]));
-                k4k3N.setText(df.format(normalizedPairwiseComparisonMatrix[3][2]));
-                k4k4N.setText(df.format(normalizedPairwiseComparisonMatrix[3][3]));
-                
-                double [] priorityVector = ahpCalculation.getPriorityVector();
-                Prior1.setText(df.format(priorityVector[0]));
-                Prior2.setText(df.format(priorityVector[1]));
-                Prior3.setText(df.format(priorityVector[2]));
-                Prior4.setText(df.format(priorityVector[3]));
-            }
+            calculateComparisonCriteriaMatrix();
+//            String id = cbIdCalonPelamar.getSelectedItem().toString();
+//            double nilaiAlternatif;
+//            
+//            candidateFound =  candidateDao.findOneById(Integer.parseInt(id));
+//            if(candidateFound != null){
+//                namaCalonPelamar.setText(candidateFound.getName());
+//                System.out.println(ahpCalculation.getPriorityVector()[0]);
+//                System.out.println(ahpCalculation.getPriorityVector()[1]);
+//                System.out.println(ahpCalculation.getPriorityVector()[2]);
+//                System.out.println(ahpCalculation.getPriorityVector()[3]);
+//                nilaiAlternatif = (candidateFound.getLeadershipScore() * ahpCalculation.getPriorityVector()[0])
+//                        + ( candidateFound.getKnowledgeScore() * ahpCalculation.getPriorityVector()[1])
+//                        + (candidateFound.getTechnicalSkillScore() * ahpCalculation.getPriorityVector()[2])
+//                        + (candidateFound.getAdvancedSkillScore() * ahpCalculation.getPriorityVector()[3]);
+//                System.out.println(nilaiAlternatif);
+//                textFieldTotalNilai.setText(df2.format(nilaiAlternatif));
+//                
+//                double [][] pairwiseComparisonMatrix = ahpCalculation.getPairwiseComparisonMatrix();
+//                k1k1.setText(df2.format(pairwiseComparisonMatrix[0][0]));
+//                k1k2.setText(df2.format(pairwiseComparisonMatrix[0][1]));
+//                k1k3.setText(df2.format(pairwiseComparisonMatrix[0][2]));
+//                k1k4.setText(df2.format(pairwiseComparisonMatrix[0][3]));
+//                k2k1.setText(df.format(pairwiseComparisonMatrix[1][0]));
+//                k2k2.setText(df2.format(pairwiseComparisonMatrix[1][1]));
+//                k2k3.setText(df2.format(pairwiseComparisonMatrix[1][2]));
+//                k2k4.setText(df2.format(pairwiseComparisonMatrix[1][3]));
+//                k3k1.setText(df.format(pairwiseComparisonMatrix[2][0]));
+//                k3k2.setText(df.format(pairwiseComparisonMatrix[2][1]));
+//                k3k3.setText(df2.format(pairwiseComparisonMatrix[2][2]));
+//                k3k4.setText(df2.format(pairwiseComparisonMatrix[2][3]));
+//                k4k1.setText(df.format(pairwiseComparisonMatrix[3][0]));
+//                k4k2.setText(df.format(pairwiseComparisonMatrix[3][1]));
+//                k4k3.setText(df.format(pairwiseComparisonMatrix[3][2]));
+//                k4k4.setText(df2.format(pairwiseComparisonMatrix[3][3]));
+//                
+//                double [][] normalizedPairwiseComparisonMatrix = ahpCalculation.getNormalizedPairwiseComparisonMatrix();
+//                k1k1N.setText(df.format(normalizedPairwiseComparisonMatrix[0][0]));
+//                k1k2N.setText(df.format(normalizedPairwiseComparisonMatrix[0][1]));
+//                k1k3N.setText(df.format(normalizedPairwiseComparisonMatrix[0][2]));
+//                k1k4N.setText(df.format(normalizedPairwiseComparisonMatrix[0][3]));
+//                k2k1N.setText(df.format(normalizedPairwiseComparisonMatrix[1][0]));
+//                k2k2N.setText(df.format(normalizedPairwiseComparisonMatrix[1][1]));
+//                k2k3N.setText(df.format(normalizedPairwiseComparisonMatrix[1][2]));
+//                k2k4N.setText(df.format(normalizedPairwiseComparisonMatrix[1][3]));
+//                k3k1N.setText(df.format(normalizedPairwiseComparisonMatrix[2][0]));
+//                k3k2N.setText(df.format(normalizedPairwiseComparisonMatrix[2][1]));
+//                k3k3N.setText(df.format(normalizedPairwiseComparisonMatrix[2][2]));
+//                k3k4N.setText(df.format(normalizedPairwiseComparisonMatrix[2][3]));
+//                k4k1N.setText(df.format(normalizedPairwiseComparisonMatrix[3][0]));
+//                k4k2N.setText(df.format(normalizedPairwiseComparisonMatrix[3][1]));
+//                k4k3N.setText(df.format(normalizedPairwiseComparisonMatrix[3][2]));
+//                k4k4N.setText(df.format(normalizedPairwiseComparisonMatrix[3][3]));
+//                
+//                double [] priorityVector = ahpCalculation.getPriorityVector();
+//                Prior1.setText(df.format(priorityVector[0]));
+//                Prior2.setText(df.format(priorityVector[1]));
+//                Prior3.setText(df.format(priorityVector[2]));
+//                Prior4.setText(df.format(priorityVector[3]));
+//            }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
         }
