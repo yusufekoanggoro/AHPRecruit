@@ -4,6 +4,9 @@
  */
 package application.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author yusuf
@@ -67,7 +70,22 @@ public class AlternativeWeightModel {
     private double knowledgeScore;
     private double technicalSkillScore;
     private double advancedSkillScore;
-    private double weight;
-    private String name;   
-
+    public double weight;
+    private String name; 
+    
+    public static List<AlternativeWeightModel> fromArray(Object[][] dataArray) {
+        List<AlternativeWeightModel> models = new ArrayList<>();
+        for (Object[] data : dataArray) {
+            AlternativeWeightModel model = new AlternativeWeightModel();
+            model.setId((Integer) data[0]);
+            model.setName((String) data[1]);
+            model.setLeadershipScore((Double) data[2]);
+            model.setKnowledgeScore((Double) data[3]);
+            model.setTechnicalSkillScore((Double) data[4]);
+            model.setAdvancedSkillScore((Double) data[5]);
+            model.weight = (Double) data[6];  // Assuming weight is at index 6
+            models.add(model);
+        }
+        return models;
+    }
 }

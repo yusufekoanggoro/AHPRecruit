@@ -1,10 +1,12 @@
 package application.models;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 public class AlternativeWeightTableModel extends AbstractTableModel {
     List<AlternativeWeightModel> alternatives;
+    DecimalFormat df2 = new DecimalFormat("0.000");
     
     public AlternativeWeightTableModel(List<AlternativeWeightModel> alternatives) {
         this.alternatives = alternatives;
@@ -47,18 +49,18 @@ public class AlternativeWeightTableModel extends AbstractTableModel {
         switch (column) {
             case 0:
                 return alternatives.get(row).getId();
-            case 2:
+            case 1:
                 return alternatives.get(row).getName();
+            case 2:
+                return df2.format(alternatives.get(row).getLeadershipScore());
             case 3:
-                return alternatives.get(row).getLeadershipScore();
+                return df2.format(alternatives.get(row).getKnowledgeScore());
             case 4:
-                return alternatives.get(row).getKnowledgeScore();
+                return df2.format(alternatives.get(row).getTechnicalSkillScore());
             case 5:
-                return alternatives.get(row).getTechnicalSkillScore();
+                return df2.format(alternatives.get(row).getAdvancedSkillScore());
             case 6:
-                return alternatives.get(row).getAdvancedSkillScore();
-            case 7:
-                return alternatives.get(row).();
+                return df2.format(alternatives.get(row).getWeight());
             default:
                 return null;
         }

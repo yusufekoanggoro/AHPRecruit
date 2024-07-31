@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -27,6 +31,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private final CandidateDao candidateDao;
     private final SelectionDao selectionDao;
     private CandidateModel candidateFound;
+    private List<AlternativeWeightModel> alternativeWeightModel = null; 
     
     /**
      * Creates new form AHPCalculationDialog
@@ -43,18 +48,27 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         candidateDao = new CandidateDaoImpl();
         selectionDao = new SelectionDaoImpl();
         
-        for (CandidateModel item : candidateDao.findAll()) {
-            cbIdCalonPelamar.addItem(String.valueOf(item.getId()));
-        }
         mulaiHitung.setBackground(Color.white);
         Simpan.setBackground(Color.white);
         
     }
     
-    void clearForm(){
-        textFieldTotalNilai.setText("");
+    public void loadTable(List<AlternativeWeightModel> list) {
+        AlternativeWeightTableModel alternativeWeightTableModel = new AlternativeWeightTableModel(list);
+        
+        jTable1.setModel(alternativeWeightTableModel);
+        
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(jTable1.getModel());
+        jTable1.setRowSorter(sorter);
+
+        List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+        sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+        sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
+        sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
+        sorter.setSortKeys(sortKeys);
     }
     
+       
     private void calculateComparisonCriteriaMatrix(){
         try {
             List<CandidateModel> candidatesFound = this.candidateDao.findAll();
@@ -194,6 +208,10 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                 }
                 System.out.println();
             }
+            
+            this.alternativeWeightModel = AlternativeWeightModel.fromArray(alternativeWeight);
+            
+            loadTable(alternativeWeightModel);
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
         }
@@ -231,8 +249,6 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         judul = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        cbIdCalonPelamar = new javax.swing.JComboBox<>();
         mulaiHitung = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
@@ -292,11 +308,9 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         Prior2 = new javax.swing.JTextField();
         Prior3 = new javax.swing.JTextField();
         Prior4 = new javax.swing.JTextField();
-        jLabel22 = new javax.swing.JLabel();
-        textFieldTotalNilai = new javax.swing.JTextField();
         Simpan = new javax.swing.JButton();
-        jLabel27 = new javax.swing.JLabel();
-        namaCalonPelamar = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         Pane = new javax.swing.JPanel();
 
         PanelPerhitungan.setMinimumSize(new java.awt.Dimension(945, 525));
@@ -308,15 +322,10 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         judul.setText("Perhitungan Hasil Penilaian Calon Pelamar Menggunakan Metode AHP");
         judul.setOpaque(true);
 
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(947, 16));
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setText("No. ID Calon Pelamar");
-
-        cbIdCalonPelamar.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbIdCalonPelamarItemStateChanged(evt);
-            }
-        });
+        jPanel1.setPreferredSize(new java.awt.Dimension(945, 698));
 
         mulaiHitung.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         mulaiHitung.setForeground(new java.awt.Color(179, 30, 144));
@@ -519,7 +528,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                         .addComponent(k3k4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(k4k4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel11.setText("Matriks Normalisasi");
@@ -666,7 +675,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                             .addComponent(Prior3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Prior1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Prior2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -730,12 +739,8 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(k4k4N, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Prior4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(13, 13, 13))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jLabel22.setText("Total Penilaian Calon Pelamar");
-
-        textFieldTotalNilai.setEditable(false);
 
         Simpan.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Simpan.setForeground(new java.awt.Color(179, 30, 144));
@@ -755,40 +760,39 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel27.setText("Nama Calon Pelamar");
-
-        namaCalonPelamar.setEditable(false);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(100, 100, 100)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(mulaiHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel27)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(namaCalonPelamar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cbIdCalonPelamar, 0, 156, Short.MAX_VALUE)
-                                        .addComponent(textFieldTotalNilai)))))
-                        .addGap(99, 99, 99)
-                        .addComponent(Simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(147, Short.MAX_VALUE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mulaiHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Simpan, mulaiHitung});
@@ -796,29 +800,18 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbIdCalonPelamar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(namaCalonPelamar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldTotalNilai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(mulaiHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(282, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Simpan, mulaiHitung});
@@ -830,14 +823,15 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         PanelPerhitunganLayout.setHorizontalGroup(
             PanelPerhitunganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(judul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         PanelPerhitunganLayout.setVerticalGroup(
             PanelPerhitunganLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPerhitunganLayout.createSequentialGroup()
                 .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -862,125 +856,88 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         setSize(new java.awt.Dimension(888, 577));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    //tombol mulai perhitungan
-    private void mulaiHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mulaiHitungActionPerformed
-        try{
-            calculateComparisonCriteriaMatrix();
-//            String id = cbIdCalonPelamar.getSelectedItem().toString();
-//            double nilaiAlternatif;
-//            
-//            candidateFound =  candidateDao.findOneById(Integer.parseInt(id));
-//            if(candidateFound != null){
-//                namaCalonPelamar.setText(candidateFound.getName());
-//                System.out.println(ahpCalculation.getPriorityVector()[0]);
-//                System.out.println(ahpCalculation.getPriorityVector()[1]);
-//                System.out.println(ahpCalculation.getPriorityVector()[2]);
-//                System.out.println(ahpCalculation.getPriorityVector()[3]);
-//                nilaiAlternatif = (candidateFound.getLeadershipScore() * ahpCalculation.getPriorityVector()[0])
-//                        + ( candidateFound.getKnowledgeScore() * ahpCalculation.getPriorityVector()[1])
-//                        + (candidateFound.getTechnicalSkillScore() * ahpCalculation.getPriorityVector()[2])
-//                        + (candidateFound.getAdvancedSkillScore() * ahpCalculation.getPriorityVector()[3]);
-//                System.out.println(nilaiAlternatif);
-//                textFieldTotalNilai.setText(df2.format(nilaiAlternatif));
-//                
-//                double [][] pairwiseComparisonMatrix = ahpCalculation.getPairwiseComparisonMatrix();
-//                k1k1.setText(df2.format(pairwiseComparisonMatrix[0][0]));
-//                k1k2.setText(df2.format(pairwiseComparisonMatrix[0][1]));
-//                k1k3.setText(df2.format(pairwiseComparisonMatrix[0][2]));
-//                k1k4.setText(df2.format(pairwiseComparisonMatrix[0][3]));
-//                k2k1.setText(df.format(pairwiseComparisonMatrix[1][0]));
-//                k2k2.setText(df2.format(pairwiseComparisonMatrix[1][1]));
-//                k2k3.setText(df2.format(pairwiseComparisonMatrix[1][2]));
-//                k2k4.setText(df2.format(pairwiseComparisonMatrix[1][3]));
-//                k3k1.setText(df.format(pairwiseComparisonMatrix[2][0]));
-//                k3k2.setText(df.format(pairwiseComparisonMatrix[2][1]));
-//                k3k3.setText(df2.format(pairwiseComparisonMatrix[2][2]));
-//                k3k4.setText(df2.format(pairwiseComparisonMatrix[2][3]));
-//                k4k1.setText(df.format(pairwiseComparisonMatrix[3][0]));
-//                k4k2.setText(df.format(pairwiseComparisonMatrix[3][1]));
-//                k4k3.setText(df.format(pairwiseComparisonMatrix[3][2]));
-//                k4k4.setText(df2.format(pairwiseComparisonMatrix[3][3]));
-//                
-//                double [][] normalizedPairwiseComparisonMatrix = ahpCalculation.getNormalizedPairwiseComparisonMatrix();
-//                k1k1N.setText(df.format(normalizedPairwiseComparisonMatrix[0][0]));
-//                k1k2N.setText(df.format(normalizedPairwiseComparisonMatrix[0][1]));
-//                k1k3N.setText(df.format(normalizedPairwiseComparisonMatrix[0][2]));
-//                k1k4N.setText(df.format(normalizedPairwiseComparisonMatrix[0][3]));
-//                k2k1N.setText(df.format(normalizedPairwiseComparisonMatrix[1][0]));
-//                k2k2N.setText(df.format(normalizedPairwiseComparisonMatrix[1][1]));
-//                k2k3N.setText(df.format(normalizedPairwiseComparisonMatrix[1][2]));
-//                k2k4N.setText(df.format(normalizedPairwiseComparisonMatrix[1][3]));
-//                k3k1N.setText(df.format(normalizedPairwiseComparisonMatrix[2][0]));
-//                k3k2N.setText(df.format(normalizedPairwiseComparisonMatrix[2][1]));
-//                k3k3N.setText(df.format(normalizedPairwiseComparisonMatrix[2][2]));
-//                k3k4N.setText(df.format(normalizedPairwiseComparisonMatrix[2][3]));
-//                k4k1N.setText(df.format(normalizedPairwiseComparisonMatrix[3][0]));
-//                k4k2N.setText(df.format(normalizedPairwiseComparisonMatrix[3][1]));
-//                k4k3N.setText(df.format(normalizedPairwiseComparisonMatrix[3][2]));
-//                k4k4N.setText(df.format(normalizedPairwiseComparisonMatrix[3][3]));
-//                
-//                double [] priorityVector = ahpCalculation.getPriorityVector();
-//                Prior1.setText(df.format(priorityVector[0]));
-//                Prior2.setText(df.format(priorityVector[1]));
-//                Prior3.setText(df.format(priorityVector[2]));
-//                Prior4.setText(df.format(priorityVector[3]));
-//            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
-        }
-    }//GEN-LAST:event_mulaiHitungActionPerformed
-    
-    //mendapatkan nama calon pelamar dari id yang dipilih
-    private void cbIdCalonPelamarItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbIdCalonPelamarItemStateChanged
-        // TODO add your handling code here:
-        try{
-            String id = cbIdCalonPelamar.getSelectedItem().toString();
-            
-            candidateFound =  candidateDao.findOneById(Integer.parseInt(id));
-            if(candidateFound != null){
-                namaCalonPelamar.setText(candidateFound.getName());
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,e);
-        }
-    }//GEN-LAST:event_cbIdCalonPelamarItemStateChanged
 
     //simpan data
     private void SimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimpanActionPerformed
         // TODO add your handling code here:
         try{
-            SelectionModel newSelection = new SelectionModel();
-            newSelection.setUserId(Integer.parseInt(cbIdCalonPelamar.getSelectedItem().toString()));
-            newSelection.setScore(Double.parseDouble(textFieldTotalNilai.getText()));
-            
-            selectionDao.upsertOne(newSelection);
-            JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
-            this.clearForm();
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Data Gagal Disimpan "+e);
         }
     }//GEN-LAST:event_SimpanActionPerformed
-
-    private void mulaiHitungMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mulaiHitungMouseEntered
-        // TODO add your handling code here:
-        mulaiHitung.setBackground(new Color(250, 239, 245));
-    }//GEN-LAST:event_mulaiHitungMouseEntered
-
-    private void mulaiHitungMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mulaiHitungMouseExited
-        // TODO add your handling code here:
-        mulaiHitung.setBackground(Color.white);
-    }//GEN-LAST:event_mulaiHitungMouseExited
-
-    private void SimpanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SimpanMouseEntered
-        // TODO add your handling code here:
-        Simpan.setBackground(new Color(250, 239, 245));
-    }//GEN-LAST:event_SimpanMouseEntered
 
     private void SimpanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SimpanMouseExited
         // TODO add your handling code here:
         Simpan.setBackground(Color.white);
     }//GEN-LAST:event_SimpanMouseExited
 
+    private void SimpanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SimpanMouseEntered
+        // TODO add your handling code here:
+        Simpan.setBackground(new Color(250, 239, 245));
+    }//GEN-LAST:event_SimpanMouseEntered
+
+    private void mulaiHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mulaiHitungActionPerformed
+        try{
+            double [][] pairwiseComparisonMatrix = ahpCalculation.getPairwiseComparisonMatrix();
+            k1k1.setText(df2.format(pairwiseComparisonMatrix[0][0]));
+            k1k2.setText(df2.format(pairwiseComparisonMatrix[0][1]));
+            k1k3.setText(df2.format(pairwiseComparisonMatrix[0][2]));
+            k1k4.setText(df2.format(pairwiseComparisonMatrix[0][3]));
+            k2k1.setText(df.format(pairwiseComparisonMatrix[1][0]));
+            k2k2.setText(df2.format(pairwiseComparisonMatrix[1][1]));
+            k2k3.setText(df2.format(pairwiseComparisonMatrix[1][2]));
+            k2k4.setText(df2.format(pairwiseComparisonMatrix[1][3]));
+            k3k1.setText(df.format(pairwiseComparisonMatrix[2][0]));
+            k3k2.setText(df.format(pairwiseComparisonMatrix[2][1]));
+            k3k3.setText(df2.format(pairwiseComparisonMatrix[2][2]));
+            k3k4.setText(df2.format(pairwiseComparisonMatrix[2][3]));
+            k4k1.setText(df.format(pairwiseComparisonMatrix[3][0]));
+            k4k2.setText(df.format(pairwiseComparisonMatrix[3][1]));
+            k4k3.setText(df.format(pairwiseComparisonMatrix[3][2]));
+            k4k4.setText(df2.format(pairwiseComparisonMatrix[3][3]));
+                
+            double [][] normalizedPairwiseComparisonMatrix = ahpCalculation.getNormalizedPairwiseComparisonMatrix();
+            k1k1N.setText(df.format(normalizedPairwiseComparisonMatrix[0][0]));
+            k1k2N.setText(df.format(normalizedPairwiseComparisonMatrix[0][1]));
+            k1k3N.setText(df.format(normalizedPairwiseComparisonMatrix[0][2]));
+            k1k4N.setText(df.format(normalizedPairwiseComparisonMatrix[0][3]));
+            k2k1N.setText(df.format(normalizedPairwiseComparisonMatrix[1][0]));
+            k2k2N.setText(df.format(normalizedPairwiseComparisonMatrix[1][1]));
+            k2k3N.setText(df.format(normalizedPairwiseComparisonMatrix[1][2]));
+            k2k4N.setText(df.format(normalizedPairwiseComparisonMatrix[1][3]));
+            k3k1N.setText(df.format(normalizedPairwiseComparisonMatrix[2][0]));
+            k3k2N.setText(df.format(normalizedPairwiseComparisonMatrix[2][1]));
+            k3k3N.setText(df.format(normalizedPairwiseComparisonMatrix[2][2]));
+            k3k4N.setText(df.format(normalizedPairwiseComparisonMatrix[2][3]));
+            k4k1N.setText(df.format(normalizedPairwiseComparisonMatrix[3][0]));
+            k4k2N.setText(df.format(normalizedPairwiseComparisonMatrix[3][1]));
+            k4k3N.setText(df.format(normalizedPairwiseComparisonMatrix[3][2]));
+            k4k4N.setText(df.format(normalizedPairwiseComparisonMatrix[3][3]));
+                
+            double [] priorityVector = ahpCalculation.getPriorityVector();
+            Prior1.setText(df.format(priorityVector[0]));
+            Prior2.setText(df.format(priorityVector[1]));
+            Prior3.setText(df.format(priorityVector[2]));
+            Prior4.setText(df.format(priorityVector[3]));
+            
+            
+            calculateComparisonCriteriaMatrix();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }//GEN-LAST:event_mulaiHitungActionPerformed
+
+    private void mulaiHitungMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mulaiHitungMouseExited
+        // TODO add your handling code here:
+        mulaiHitung.setBackground(Color.white);
+    }//GEN-LAST:event_mulaiHitungMouseExited
+
+    private void mulaiHitungMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mulaiHitungMouseEntered
+        // TODO add your handling code here:
+        mulaiHitung.setBackground(new Color(250, 239, 245));
+    }//GEN-LAST:event_mulaiHitungMouseEntered
+
+   
     /**
      * @param args the command line arguments
      */
@@ -1047,8 +1004,6 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private javax.swing.JTextField Prior4;
     private javax.swing.JButton Simpan;
     private javax.swing.ButtonGroup btnG;
-    private javax.swing.JComboBox<String> cbIdCalonPelamar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1061,8 +1016,6 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1074,7 +1027,9 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel judul;
     private javax.swing.JTextField k1k1;
     private javax.swing.JTextField k1k1N;
@@ -1109,8 +1064,6 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private javax.swing.JTextField k4k4;
     private javax.swing.JTextField k4k4N;
     private javax.swing.JButton mulaiHitung;
-    private javax.swing.JTextField namaCalonPelamar;
-    private javax.swing.JTextField textFieldTotalNilai;
     // End of variables declaration//GEN-END:variables
 
     void show(JRootPane rootPane) {
