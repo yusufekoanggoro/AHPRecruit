@@ -52,7 +52,13 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         mulaiHitung.setBackground(Color.white);
         Simpan.setBackground(Color.white);
         reset.setBackground(Color.white);
-//        this.loadTable(null);
+
+        
+        List<AlternativeWeightModel> alternative =  new ArrayList<>();
+        
+        AlternativeWeightTableModel alternativeWeightTableModel = new AlternativeWeightTableModel(alternative);
+        
+        jTable1.setModel(alternativeWeightTableModel);
     }
     
     public void loadTable(List<AlternativeWeightModel> list) {
