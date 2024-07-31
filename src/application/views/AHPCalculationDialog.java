@@ -800,12 +800,12 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -814,8 +814,8 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                         .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(Simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Simpan, mulaiHitung});
@@ -881,6 +881,65 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
+        // TODO add your handling code here:
+        AlternativeWeightTableModel model = (AlternativeWeightTableModel) jTable1.getModel();
+
+        // Remove all rows
+        model.clearData();
+
+        // Optionally, clear the sorter
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTable1.getModel());
+        jTable1.setRowSorter(sorter);
+        
+        k1k1.setText("");
+        k1k2.setText("");
+        k1k3.setText("");
+        k1k4.setText("");
+        k2k1.setText("");
+        k2k2.setText("");
+        k2k3.setText("");
+        k2k4.setText("");
+        k3k1.setText("");
+        k3k2.setText("");
+        k3k3.setText("");
+        k3k4.setText("");
+        k4k1.setText("");
+        k4k2.setText("");
+        k4k3.setText("");
+        k4k4.setText("");
+
+        k1k1N.setText("");
+        k1k2N.setText("");
+        k1k3N.setText("");
+        k1k4N.setText("");
+        k2k1N.setText("");
+        k2k2N.setText("");
+        k2k3N.setText("");
+        k2k4N.setText("");
+        k3k1N.setText("");
+        k3k2N.setText("");
+        k3k3N.setText("");
+        k3k4N.setText("");
+        k4k1N.setText("");
+        k4k2N.setText("");
+        k4k3N.setText("");
+        k4k4N.setText("");
+
+        Prior1.setText("");
+        Prior2.setText("");
+        Prior3.setText("");
+        Prior4.setText("");
+    }//GEN-LAST:event_resetActionPerformed
+
+    private void resetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resetMouseExited
+
+    private void resetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_resetMouseEntered
+
     //simpan data
     private void SimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimpanActionPerformed
         // TODO add your handling code here:
@@ -919,7 +978,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
             k4k2.setText(df.format(pairwiseComparisonMatrix[3][1]));
             k4k3.setText(df.format(pairwiseComparisonMatrix[3][2]));
             k4k4.setText(df2.format(pairwiseComparisonMatrix[3][3]));
-                
+
             double [][] normalizedPairwiseComparisonMatrix = ahpCalculation.getNormalizedPairwiseComparisonMatrix();
             k1k1N.setText(df.format(normalizedPairwiseComparisonMatrix[0][0]));
             k1k2N.setText(df.format(normalizedPairwiseComparisonMatrix[0][1]));
@@ -937,14 +996,13 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
             k4k2N.setText(df.format(normalizedPairwiseComparisonMatrix[3][1]));
             k4k3N.setText(df.format(normalizedPairwiseComparisonMatrix[3][2]));
             k4k4N.setText(df.format(normalizedPairwiseComparisonMatrix[3][3]));
-                
+
             double [] priorityVector = ahpCalculation.getPriorityVector();
             Prior1.setText(df.format(priorityVector[0]));
             Prior2.setText(df.format(priorityVector[1]));
             Prior3.setText(df.format(priorityVector[2]));
             Prior4.setText(df.format(priorityVector[3]));
-            
-            
+
             calculateComparisonCriteriaMatrix();
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
@@ -960,26 +1018,6 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
         mulaiHitung.setBackground(new Color(250, 239, 245));
     }//GEN-LAST:event_mulaiHitungMouseEntered
-
-    private void resetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_resetMouseEntered
-
-    private void resetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_resetMouseExited
-
-    private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
-        // TODO add your handling code here:       
-        AlternativeWeightTableModel model = (AlternativeWeightTableModel) jTable1.getModel();
-        
-        // Remove all rows
-        model.clearData();
-        
-        // Optionally, clear the sorter
-        TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTable1.getModel());
-        jTable1.setRowSorter(sorter);
-    }//GEN-LAST:event_resetActionPerformed
 
    
     /**
