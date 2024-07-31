@@ -65,4 +65,9 @@ public class AlternativeWeightTableModel extends AbstractTableModel {
                 return null;
         }
     }
+    
+    public void clearData() {
+        alternatives.clear();
+        fireTableDataChanged();
+    }
 }

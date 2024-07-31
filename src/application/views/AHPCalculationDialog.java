@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
 import javax.swing.RowSorter;
 import javax.swing.SortOrder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -50,7 +51,8 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         
         mulaiHitung.setBackground(Color.white);
         Simpan.setBackground(Color.white);
-        reset.setBackground(Color.white);        
+        reset.setBackground(Color.white);
+//        this.loadTable(null);
     }
     
     public void loadTable(List<AlternativeWeightModel> list) {
@@ -968,7 +970,15 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_resetMouseExited
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:       
+        AlternativeWeightTableModel model = (AlternativeWeightTableModel) jTable1.getModel();
+        
+        // Remove all rows
+        model.clearData();
+        
+        // Optionally, clear the sorter
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTable1.getModel());
+        jTable1.setRowSorter(sorter);
     }//GEN-LAST:event_resetActionPerformed
 
    
