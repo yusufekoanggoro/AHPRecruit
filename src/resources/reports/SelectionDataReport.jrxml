@@ -237,7 +237,9 @@
 									<font fontName="Times New Roman"/>
 									<paragraph leftIndent="4"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$F{score}]]></textFieldExpression>
+								<!--<textFieldExpression><![CDATA[$F{score}]]></textFieldExpression>-->
+                                                                <textFieldExpression><![CDATA[new java.text.DecimalFormat("0.000").format($F{score})]]></textFieldExpression>
+                                                                <!--<textFieldPattern><![CDATA[0.000]]></textFieldPattern>-->
 							</textField>
 						</jr:detailCell>
 					</jr:column>
