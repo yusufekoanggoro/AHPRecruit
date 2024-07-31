@@ -32,7 +32,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private final CandidateDao candidateDao;
     private final SelectionDao selectionDao;
     private CandidateModel candidateFound;
-    private List<AlternativeWeightModel> alternativeWeightModel = null; 
+    private List<AlternativeWeightModel> alternativeWeightModel = null;
     
     /**
      * Creates new form AHPCalculationDialog
@@ -950,6 +950,14 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private void SimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SimpanActionPerformed
         // TODO add your handling code here:
         try{
+            for (AlternativeWeightModel item : this.alternativeWeightModel) {
+                SelectionModel newData = new SelectionModel();
+                newData.setUserId(item.getId());
+                newData.setScore(item.getWeight());
+                selectionDao.upsertOne(newData);
+            }   
+            JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
+            this.resetActionPerformed(evt);
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Data Gagal Disimpan "+e);
         }

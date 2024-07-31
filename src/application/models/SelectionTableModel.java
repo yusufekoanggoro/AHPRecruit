@@ -1,10 +1,12 @@
 package application.models;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 public class SelectionTableModel extends AbstractTableModel {
     List<SelectionModel> selections;
+    DecimalFormat df2 = new DecimalFormat("0.000");
     
     public SelectionTableModel(List<SelectionModel> selections) {
         this.selections = selections;
@@ -50,7 +52,7 @@ public class SelectionTableModel extends AbstractTableModel {
             case 3:
                 return selections.get(row).getPhoneNumber();
             case 4:
-                return selections.get(row).getScore();
+                return df2.format(selections.get(row).getScore());
             default:
                 return null;
         }
