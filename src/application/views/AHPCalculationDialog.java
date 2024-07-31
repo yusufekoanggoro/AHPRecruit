@@ -6,9 +6,12 @@ import application.daoimpl.CandidateDaoImpl;
 import application.models.CandidateModel;
 import application.daoimpl.SelectionDaoImpl;
 import application.models.SelectionModel;
+import application.models.AlternativeWeightModel;
+import application.models.AlternativeWeightTableModel;
 import application.utils.AHPCalculation;
 import java.awt.Color;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
@@ -59,18 +62,27 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
             int size = candidatesFound.size();
             
             
+//            List<AlternativeWeightModel> alternativeWeight = new ArrayList<>();
+            
+            Object[][] alternativeWeight = new Object[size][7];
+
             int[][] criterias = new int[4][size];
             
             for (int row = 0; row < 4; row++) {
                 for (int col = 0; col < size; col++) {
-                    if(row == 0){
-                        criterias[row][col] = candidatesFound.get(col).getLeadershipScore();
-                    }else if(row == 1){
-                        criterias[row][col] = candidatesFound.get(col).getKnowledgeScore();
-                    }else if(row == 2){
-                        criterias[row][col] = candidatesFound.get(col).getTechnicalSkillScore();
-                    }else{
-                        criterias[row][col] = candidatesFound.get(col).getAdvancedSkillScore();
+                    switch (row) {
+                        case 0:
+                            criterias[row][col] = candidatesFound.get(col).getLeadershipScore();
+                            break;
+                        case 1:
+                            criterias[row][col] = candidatesFound.get(col).getKnowledgeScore();
+                            break;
+                        case 2:
+                            criterias[row][col] = candidatesFound.get(col).getTechnicalSkillScore();
+                            break;
+                        default:
+                            criterias[row][col] = candidatesFound.get(col).getAdvancedSkillScore();
+                            break;
                     }
                 }
             }
@@ -78,14 +90,19 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
             System.out.println("\n[#" + "LOOP ALTERNATIF TERHADAP MASING-MASING KRITERIA" +"]");
             for (int criteria = 0; criteria < criterias.length; criteria++) {
                 
-                if(criteria == 0){
-                    System.out.println("Perhitungan Alternatif Terhadap Masing-masing Kriteria Nilai Kepemimpinan");
-                } else if(criteria == 1){
-                    System.out.println("Perhitungan Alternatif Terhadap Masing-masing Kriteria Nilai Pengetahuan");
-                }else if(criteria == 2){
-                    System.out.println("Perhitungan Alternatif Terhadap Masing-masing Kriteria Nilai Kemampuan Teknis");
-                }else{
-                    System.out.println("Perhitungan Alternatif Terhadap Masing-masing Kriteria Nilai Kemampuan Lanjutan");
+                switch (criteria) {
+                    case 0:
+                        System.out.println("Perhitungan Alternatif Terhadap Masing-masing Kriteria Nilai Kepemimpinan");
+                        break;
+                    case 1:
+                        System.out.println("Perhitungan Alternatif Terhadap Masing-masing Kriteria Nilai Pengetahuan");
+                        break;
+                    case 2:
+                        System.out.println("Perhitungan Alternatif Terhadap Masing-masing Kriteria Nilai Kemampuan Teknis");
+                        break;
+                    default:
+                        System.out.println("Perhitungan Alternatif Terhadap Masing-masing Kriteria Nilai Kemampuan Lanjutan");
+                        break;
                 }
                 
                 int[] scores = criterias[criteria];
@@ -126,13 +143,68 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                 for (double num : priorityVector) {
                     System.out.println(num + " === ");
                 }
+                
+                for (int i = 0; i < size; i++) {
+                    if(criteria == 0){
+                       alternativeWeight[i][0] = candidatesFound.get(i).getId();
+                       alternativeWeight[i][1] = candidatesFound.get(i).getName();
+                    }
+                    
+                    for (int p = 0; p < priorityVector.length; p++) {
+                        switch (criteria) {
+                            case 0:
+                                alternativeWeight[p][2] = priorityVector[p];
+                                break;
+                            case 1:
+                                alternativeWeight[p][3] = priorityVector[p];
+                                break;
+                            case 2:
+                                alternativeWeight[p][4] = priorityVector[p];
+                                break;
+                            case 3:
+                                alternativeWeight[p][5] = priorityVector[p];
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                }
+            }
+            
+
+            double[] priorityCriteria = ahpCalculation.getPriorityVector();
+            
+            for (int row = 0; row < alternativeWeight.length; row++) {
+                double[] scoreCriteria = new double[4];
+                for (int col = 0; col < alternativeWeight[row].length; col++) {
+                    if(col > 1 && col <= 5){
+                        scoreCriteria[col - 2] = (double) alternativeWeight[row][col];
+                    }
+                }
+                alternativeWeight[row][6] = calculateScore(priorityCriteria, scoreCriteria);
                 System.out.println();
             }
-           
-        
+            
+                        
+            for (int row = 0; row < alternativeWeight.length; row++) {
+                double[] scoreCriteria = new double[4];
+                for (int col = 0; col < alternativeWeight[row].length; col++) {
+                    System.out.print(alternativeWeight[row][col] + " ");
+                }
+                System.out.println();
+            }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
         }
+    }
+    
+    public double calculateScore(double[] weights, double[] values) {
+        double score = 0.0;
+        for (int i = 0; i < weights.length; i++) {
+            score += weights[i] * values[i];
+        }
+        return score;
     }
     
     public void printArray2D(double[][] array, String title) {
