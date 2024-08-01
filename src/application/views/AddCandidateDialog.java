@@ -119,7 +119,7 @@ public class AddCandidateDialog extends javax.swing.JDialog {
         tombolEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         tombolEdit.setForeground(new java.awt.Color(179, 30, 144));
         tombolEdit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tombolEdit.setText("Edit Data");
+        tombolEdit.setText("Ubah Data");
         tombolEdit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(202, 210, 226)));
         tombolEdit.setOpaque(true);
         tombolEdit.addMouseListener(new java.awt.event.MouseAdapter() {

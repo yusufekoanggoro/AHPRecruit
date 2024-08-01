@@ -246,7 +246,7 @@ public class SelectionData extends javax.swing.JPanel {
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
         // TODO add your handling code here:
         try{
-            int ok = JOptionPane.showConfirmDialog(null,"hapus","Konfirmasi Dialog",JOptionPane.YES_NO_CANCEL_OPTION);
+            int ok = JOptionPane.showConfirmDialog(null,"Hapus Semua Data","Konfirmasi Dialog",JOptionPane.YES_NO_CANCEL_OPTION);
             if(ok == 0){
                 selectionDao.delete(this.id);
                 JOptionPane.showMessageDialog(null, "Data Berhasil diHapus ");

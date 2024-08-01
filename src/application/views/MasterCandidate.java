@@ -152,7 +152,7 @@ public class MasterCandidate extends javax.swing.JPanel {
 
         buttonEdit.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         buttonEdit.setForeground(new java.awt.Color(179, 30, 144));
-        buttonEdit.setText("Edit");
+        buttonEdit.setText("Ubah");
         buttonEdit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(202, 210, 226)));
         buttonEdit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {

@@ -100,10 +100,11 @@ public class SelectionDaoImpl implements SelectionDao {
     @Override
     public int delete(int id) {
         try {
-            query = "DELETE FROM selections WHERE id = ?";
+//            query = "DELETE FROM selections WHERE id = ?";
+            query = "DELETE FROM selections";
             
             pstmt = dbConnection.prepareStatement(query);
-            pstmt.setInt(1, id);
+//            pstmt.setInt(1, id);
             
             return pstmt.executeUpdate();
 	} catch (SQLException e) {
