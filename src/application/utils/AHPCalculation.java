@@ -21,6 +21,10 @@ public final class AHPCalculation {
     private double[] priorityVector;
     private double[] jumlahCekKonsistensi;
     private double[] eigenVector;
+    private double irValue;
+    private double ciValue;
+    private double crValue;
+    private double lambdaMax;
     
     public AHPCalculation(){
         setPairwiseComparisonMatrix();
@@ -141,12 +145,16 @@ public final class AHPCalculation {
         
         double ir = this.getConsistencyIndex(n);
         
+        this.irValue = ir;
+        this.ciValue = CI;
+        
         double CR= CI/ir;
         if(CR <= 0.1){
             System.out.println("Konsisten");
         }else{
             System.out.println("Tidak Konsisten");
-        }  
+        }
+        this.crValue = CR;
         
 //      cara lain
 //        for (int row = 0; row < n; row++) {
@@ -179,6 +187,26 @@ public final class AHPCalculation {
     private double getConsistencyIndex(int n) {
         double[] consistencyIndices = {0.0, 0.0, 0.58, 0.90, 1.12, 1.24, 1.32, 1.41, 1.45, 1.49};
         return consistencyIndices[n - 1];
+    }
+    
+    public double getIRValue(){
+        return this.irValue;
+    }
+    
+    public double getCIValue(){
+        return this.ciValue;
+    }
+    
+    public double getCRValue(){
+        return this.crValue;
+    }
+    
+    public double getLambdaMaxValue(){
+        return this.lambdaMax;
+    }
+    
+    public int getNCriteriaValue(){
+        return this.n;
     }
     
     public static void main(String args[]) {
