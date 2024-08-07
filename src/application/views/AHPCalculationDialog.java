@@ -346,6 +346,33 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         lambdaMax = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel21 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTableMatriksPerbandinganKepemimpinan = new javax.swing.JTable();
+        jLabel25 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jLabel26 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable6 = new javax.swing.JTable();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        jLabel32 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTable7 = new javax.swing.JTable();
+        jLabel33 = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTable8 = new javax.swing.JTable();
+        jLabel34 = new javax.swing.JLabel();
         Pane = new javax.swing.JPanel();
 
         PanelPerhitungan.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -383,7 +410,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setText("Matriks Perbandingan Kriteria");
+        jLabel2.setText("1. Matriks Perbandingan Kriteria");
 
         jLabel3.setText("K1");
 
@@ -569,7 +596,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        jLabel11.setText("Matriks Normalisasi");
+        jLabel11.setText("2. Matriks Normalisasi");
 
         jLabel12.setText("K1");
 
@@ -1021,6 +1048,134 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         jTable1.setShowGrid(true);
         jScrollPane2.setViewportView(jTable1);
 
+        jLabel21.setText("3. Matriks Perbandingan Alternatif terhadap Kriteria");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
+
+        jLabel23.setText("Kriteria Pengetahuan");
+
+        jLabel24.setText("Kriteria Kepemimpinan");
+
+        jTableMatriksPerbandinganKepemimpinan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTableMatriksPerbandinganKepemimpinan.setMinimumSize(new java.awt.Dimension(100, 80));
+        jTableMatriksPerbandinganKepemimpinan.setPreferredSize(new java.awt.Dimension(100, 80));
+        jScrollPane4.setViewportView(jTableMatriksPerbandinganKepemimpinan);
+
+        jLabel25.setText("Kriteria Kemampuan Teknis");
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable4);
+
+        jLabel26.setText("Kriteria Kemampuan Lanjutan");
+
+        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(jTable6);
+
+        jLabel27.setText("4. Matriks Bobot Alternatif terhadap Kriteria");
+
+        jLabel28.setText("Kriteria Kepemimpinan");
+
+        jLabel29.setText("Kriteria Pengetahuan");
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane8.setViewportView(jTable5);
+
+        jLabel32.setText("Kriteria Kemampuan Teknis");
+
+        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane9.setViewportView(jTable7);
+
+        jLabel33.setText("Kriteria Kemampuan Lanjutan");
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane10.setViewportView(jTable3);
+
+        jTable8.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane11.setViewportView(jTable8);
+
+        jLabel34.setText("Hasil Akhir");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1043,8 +1198,31 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabel34)
                     .addComponent(jScrollPane2))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel26)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel29)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel32)
+                    .addComponent(jLabel33)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {Simpan, mulaiHitung});
@@ -1052,23 +1230,67 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mulaiHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 375, Short.MAX_VALUE))
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel27))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel28))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel23))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel29)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel32)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel33)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(Simpan, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(reset, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(mulaiHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel25)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel26)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(333, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {Simpan, mulaiHitung});
@@ -1115,6 +1337,30 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lambdaMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lambdaMaxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lambdaMaxActionPerformed
+
+    private void ciValue1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciValue1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ciValue1ActionPerformed
+
+    private void nCriteriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nCriteriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nCriteriaActionPerformed
+
+    private void ciValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciValueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ciValueActionPerformed
+
+    private void crValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crValueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_crValueActionPerformed
+
+    private void irValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irValuesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_irValuesActionPerformed
+
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         // TODO add your handling code here:
         AlternativeWeightTableModel model = (AlternativeWeightTableModel) jTable1.getModel();
@@ -1125,7 +1371,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         // Optionally, clear the sorter
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTable1.getModel());
         jTable1.setRowSorter(sorter);
-        
+
         k1k1.setText("");
         k1k2.setText("");
         k1k3.setText("");
@@ -1164,11 +1410,11 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         Prior2.setText("");
         Prior3.setText("");
         Prior4.setText("");
-        
+
         lambdaMax.setText("");
         ciValue1.setText("");
         nCriteria.setText("");
-            
+
         ciValue.setText("");
         irValues.setText("");
         crValue.setText("");
@@ -1192,7 +1438,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                 newData.setUserId(item.getId());
                 newData.setScore(item.getWeight());
                 selectionDao.upsertOne(newData);
-            }   
+            }
             JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
             this.resetActionPerformed(evt);
         }catch (Exception e){
@@ -1253,15 +1499,15 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
             Prior2.setText(df.format(priorityVector[1]));
             Prior3.setText(df.format(priorityVector[2]));
             Prior4.setText(df.format(priorityVector[3]));
-            
+
             lambdaMax.setText(df.format(ahpCalculation.getLambdaMaxValue()));
             ciValue1.setText(df.format(ahpCalculation.getCIValue()));
             nCriteria.setText(ahpCalculation.getNCriteriaValue() + "");
-            
+
             ciValue.setText(df.format(ahpCalculation.getCIValue()));
             irValues.setText(df.format(ahpCalculation.getIRValue()));
             crValue.setText(df.format(ahpCalculation.getCRValue()));
-            
+
             if(ahpCalculation.getCRValue() <= 0.1){
                 conclusion.setText("kurang dari 0.1 konsisten");
             }else{
@@ -1283,30 +1529,6 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
         mulaiHitung.setBackground(new Color(250, 239, 245));
     }//GEN-LAST:event_mulaiHitungMouseEntered
-
-    private void irValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irValuesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_irValuesActionPerformed
-
-    private void ciValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciValueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ciValueActionPerformed
-
-    private void crValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crValueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_crValueActionPerformed
-
-    private void nCriteriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nCriteriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nCriteriaActionPerformed
-
-    private void ciValue1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciValue1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ciValue1ActionPerformed
-
-    private void lambdaMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lambdaMaxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lambdaMaxActionPerformed
 
    
     /**
@@ -1392,9 +1614,20 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
@@ -1418,8 +1651,24 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
+    private javax.swing.JTable jTable7;
+    private javax.swing.JTable jTable8;
+    private javax.swing.JTable jTableMatriksPerbandinganKepemimpinan;
     private javax.swing.JLabel judul;
     private javax.swing.JTextField k1k1;
     private javax.swing.JTextField k1k1N;
