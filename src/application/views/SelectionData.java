@@ -261,6 +261,7 @@ public class SelectionData extends javax.swing.JPanel {
         // TODO add your handling code here:
         AHPCalculationDialog dialog = new AHPCalculationDialog(null, true);
         dialog.show();
+//        new AHPCalculation().start();
         loadTable();
     }//GEN-LAST:event_tombolLihatPerhitunganAHPActionPerformed
 
