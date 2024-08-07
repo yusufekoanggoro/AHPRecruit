@@ -1000,7 +1000,7 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel30">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Menghitung Nilai Consistency Ratio"/>
+                        <Property name="text" type="java.lang.String" value="4. Menghitung Nilai Consistency Ratio"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel40">
@@ -1146,7 +1146,7 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel31">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Menghitung Nilai Index Consistency"/>
+                        <Property name="text" type="java.lang.String" value="3. Menghitung Nilai Index Consistency"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel46">
@@ -1239,7 +1239,7 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLabel21">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="3. Matriks Perbandingan Alternatif terhadap Kriteria"/>
+                    <Property name="text" type="java.lang.String" value="5. Matriks Perbandingan Alternatif terhadap Kriteria"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane3">
@@ -1354,7 +1354,7 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLabel27">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="4. Matriks Bobot Alternatif terhadap Kriteria"/>
+                    <Property name="text" type="java.lang.String" value="6. Matriks Bobot Alternatif terhadap Kriteria"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel28">
@@ -1400,7 +1400,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable7">
+                    <Component class="javax.swing.JTable" name="jTableMatrixComparisonNormalizeTechnicalSkill">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">
@@ -1426,7 +1426,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable3">
+                    <Component class="javax.swing.JTable" name="jTableMatrixComparisonNormalizeAdvancedSkill">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">
@@ -1447,7 +1447,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable8">
+                    <Component class="javax.swing.JTable" name="jTableMatrixComparisonNormalizeKnowledge">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">
@@ -1463,7 +1463,7 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLabel34">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Hasil Akhir"/>
+                    <Property name="text" type="java.lang.String" value="7. Hasil Akhir"/>
                   </Properties>
                 </Component>
               </SubComponents>
