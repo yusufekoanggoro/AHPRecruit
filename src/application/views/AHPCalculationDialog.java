@@ -46,6 +46,8 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
     private final List<List<Object>> matrixComparisonNormalizeAdvancedSkill = new ArrayList<>();
     private int totalCandidates = 0;
     private List<CandidateModel> candidatesFound;
+    private List<String> defaultColumnNames = new ArrayList<>();
+    private List<String> defaultColumnNamesTableComparisonNormalize = new ArrayList<>();
 
     /**
      * Creates new form AHPCalculationDialog
@@ -75,35 +77,42 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
 
         jTable1.setModel(alternativeWeightTableModel);
 
-        List<String> columnNames = new ArrayList<>();
-        columnNames.add("Nama");
-        columnNames.add("A1");
-        columnNames.add("A2");
-        columnNames.add("A3");
+        this.defaultColumnNames.add("Nama");
+        this.defaultColumnNames.add("A1");
+        this.defaultColumnNames.add("A2");
+        this.defaultColumnNames.add("A3");
 
         List<List<Object>> data = new ArrayList<>();
 
-        MatrixTableModel matrixTableModel = new MatrixTableModel(columnNames, data);
+        MatrixTableModel matrixTableModel = new MatrixTableModel(defaultColumnNames, data);
         jTableMatrixComparisonLeadership.setModel(matrixTableModel);
 
-        MatrixTableModel matrixTableModel2 = new MatrixTableModel(columnNames, data);
+        MatrixTableModel matrixTableModel2 = new MatrixTableModel(defaultColumnNames, data);
         jTableMatrixComparisonKnowledge.setModel(matrixTableModel2);
 
-        MatrixTableModel matrixTableModel3 = new MatrixTableModel(columnNames, data);
+        MatrixTableModel matrixTableModel3 = new MatrixTableModel(defaultColumnNames, data);
         jTableMatrixComparisonTechnicalSkill.setModel(matrixTableModel3);
 
-        MatrixTableModel matrixTableModel4 = new MatrixTableModel(columnNames, data);
+        MatrixTableModel matrixTableModel4 = new MatrixTableModel(defaultColumnNames, data);
         jTableMatrixComparisonAdvancedSkill.setModel(matrixTableModel4);
 
-        List<String> columnNamesTableComparisonNormalize = new ArrayList<>();
-        columnNamesTableComparisonNormalize.add("Nama");
-        columnNamesTableComparisonNormalize.add("A1");
-        columnNamesTableComparisonNormalize.add("A2");
-        columnNamesTableComparisonNormalize.add("A3");
-        columnNamesTableComparisonNormalize.add("Bobot");
+        defaultColumnNamesTableComparisonNormalize.add("Nama");
+        defaultColumnNamesTableComparisonNormalize.add("A1");
+        defaultColumnNamesTableComparisonNormalize.add("A2");
+        defaultColumnNamesTableComparisonNormalize.add("A3");
+        defaultColumnNamesTableComparisonNormalize.add("Bobot");
 
-        MatrixTableModel matrixTableModel5 = new MatrixTableModel(columnNamesTableComparisonNormalize, data);
+        MatrixTableModel matrixTableModel5 = new MatrixTableModel(defaultColumnNamesTableComparisonNormalize, data);
         jTableMatrixComparisonNormalizeLeadership.setModel(matrixTableModel5);
+        
+        MatrixTableModel matrixTableModel6 = new MatrixTableModel(defaultColumnNamesTableComparisonNormalize, data);
+        jTableMatrixComparisonNormalizeKnowledge.setModel(matrixTableModel6);
+        
+        MatrixTableModel matrixTableModel7 = new MatrixTableModel(defaultColumnNamesTableComparisonNormalize, data);
+        jTableMatrixComparisonNormalizeTechnicalSkill.setModel(matrixTableModel7);
+        
+        MatrixTableModel matrixTableModel8 = new MatrixTableModel(defaultColumnNamesTableComparisonNormalize, data);
+        jTableMatrixComparisonNormalizeAdvancedSkill.setModel(matrixTableModel8);
     }
 
     public void loadTable(List<AlternativeWeightModel> list) {
@@ -122,9 +131,9 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         List<String> columnNames = new ArrayList<>();
         columnNames.add("Nama");
 
-        if (this.totalCandidates > 3) {
-            this.totalCandidates = 3;
-        }
+//        if (this.totalCandidates > 3) {
+//            this.totalCandidates = 3;
+//        }
 
         for (int i = 0; i <= totalCandidates - 1; i++) {
             columnNames.add(candidatesFound.get(i).getName());
@@ -132,13 +141,13 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
 
         MatrixTableModel matrixTableModel1 = new MatrixTableModel(columnNames, this.matrixComparisonLeadership);
         jTableMatrixComparisonLeadership.setModel(matrixTableModel1);
-////        
+
         MatrixTableModel matrixTableModel2 = new MatrixTableModel(columnNames, this.matrixComparisonKnowledge);
         jTableMatrixComparisonKnowledge.setModel(matrixTableModel2);
-////        
+
         MatrixTableModel matrixTableModel3 = new MatrixTableModel(columnNames, this.matrixComparisonTechnicalSkill);
         jTableMatrixComparisonTechnicalSkill.setModel(matrixTableModel3);
-//        
+
         MatrixTableModel matrixTableModel4 = new MatrixTableModel(columnNames, this.matrixComparisonAdvancedSkill);
         jTableMatrixComparisonAdvancedSkill.setModel(matrixTableModel4);
 
@@ -149,7 +158,8 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
             columnNamesTableComparisonNormalize.add(candidatesFound.get(i).getName());
         }
 
-//        columnNamesTableComparisonNormalize.add("Bobot");
+        columnNamesTableComparisonNormalize.add("Bobot");
+        
         MatrixTableModel matrixTableModel5 = new MatrixTableModel(columnNamesTableComparisonNormalize, this.matrixComparisonNormalizeLeadership);
         jTableMatrixComparisonNormalizeLeadership.setModel(matrixTableModel5);
         
@@ -240,7 +250,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                 }
 
                 for (int row = 0; row < size; row++) {
-                    if (row < 3) {
+//                    if (row < 3) {
                         List<Object> row1 = new ArrayList<>();
                         row1.add(candidatesFound.get(row).getName());
                         for (int col = 0; col < size; col++) {
@@ -260,7 +270,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                                 this.matrixComparisonAdvancedSkill.add(row1);
                                 break;
                         }
-                    }
+//                    }
                 }
 
                 System.out.println("size: " + this.matrixComparisonLeadership.size());
@@ -291,14 +301,15 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                 }
 
                 for (int row = 0; row < size; row++) {
-                    if (row < 3) {
+//                    if (row < 3) {
                         List<Object> row1 = new ArrayList<>();
                         row1.add(candidatesFound.get(row).getName());
                         for (int col = 0; col < size; col++) {
-                            if (col < 3) {
+//                            if (col < 3) {
                                 row1.add(df2.format(normalizedAlternativeScoreMatrix[row][col]));
-                            }
+//                            }
                         }
+                        row1.add(df2.format(priorityVector[row]));
                         switch (criteria) {
                             case 0:
                                 this.matrixComparisonNormalizeLeadership.add(row1);
@@ -313,7 +324,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                                 this.matrixComparisonNormalizeAdvancedSkill.add(row1);
                                 break;
                         }
-                    }
+//                    }
                 }
 
                 for (int i = 0; i < size; i++) {
@@ -1189,7 +1200,6 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setPreferredSize(new java.awt.Dimension(676, 80));
         jTable1.setShowGrid(true);
         jScrollPane2.setViewportView(jTable1);
 
@@ -1223,8 +1233,6 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTableMatrixComparisonLeadership.setMinimumSize(new java.awt.Dimension(100, 80));
-        jTableMatrixComparisonLeadership.setPreferredSize(new java.awt.Dimension(100, 80));
         jScrollPane4.setViewportView(jTableMatrixComparisonLeadership);
 
         jLabel25.setText("Kriteria Kemampuan Teknis");
@@ -1345,7 +1353,7 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
                                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addComponent(jLabel34)
                     .addComponent(jScrollPane2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel23)
                     .addComponent(jLabel24)
@@ -1511,33 +1519,32 @@ public class AHPCalculationDialog extends javax.swing.JDialog {
         model.clearData();
 
         MatrixTableModel model1 = (MatrixTableModel) jTableMatrixComparisonLeadership.getModel();
-        model1.clearData();
+        model1.clearData(this.defaultColumnNames);
 
         MatrixTableModel model2 = (MatrixTableModel) jTableMatrixComparisonKnowledge.getModel();
-        model2.clearData();
+        model2.clearData(this.defaultColumnNames);
 
         MatrixTableModel model3 = (MatrixTableModel) jTableMatrixComparisonTechnicalSkill.getModel();
-        model3.clearData();
+        model3.clearData(this.defaultColumnNames);
 
         MatrixTableModel model4 = (MatrixTableModel) jTableMatrixComparisonAdvancedSkill.getModel();
-        model4.clearData();
-        
-        
+        model4.clearData(this.defaultColumnNames);
+
         MatrixTableModel model5 = (MatrixTableModel) jTableMatrixComparisonNormalizeLeadership.getModel();
-        model5.clearData();
+        model5.clearData(this.defaultColumnNamesTableComparisonNormalize);
 
         MatrixTableModel model6 = (MatrixTableModel) jTableMatrixComparisonNormalizeKnowledge.getModel();
-        model6.clearData();
+        model6.clearData(this.defaultColumnNamesTableComparisonNormalize);
 
         MatrixTableModel model7 = (MatrixTableModel) jTableMatrixComparisonNormalizeTechnicalSkill.getModel();
-        model7.clearData();
+        model7.clearData(this.defaultColumnNamesTableComparisonNormalize);
 
         MatrixTableModel model8 = (MatrixTableModel) jTableMatrixComparisonNormalizeAdvancedSkill.getModel();
-        model8.clearData();
+        model8.clearData(this.defaultColumnNamesTableComparisonNormalize);
 
         // Optionally, clear the sorter
-//        TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTable1.getModel());
-//        jTable1.setRowSorter(sorter);
+        //        TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTable1.getModel());
+        //        jTable1.setRowSorter(sorter);
         k1k1.setText("");
         k1k2.setText("");
         k1k3.setText("");

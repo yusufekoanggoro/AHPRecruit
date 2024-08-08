@@ -55,8 +55,12 @@ public class MatrixTableModel extends AbstractTableModel {
         fireTableCellUpdated(rowIndex, columnIndex);
     }
 
-    public void clearData() {
+    public void clearData(List<String> newColumnNames) {
+        if(newColumnNames != null){
+            this.columnNames = newColumnNames;   
+        }
         data.clear();
+        fireTableStructureChanged();
         fireTableDataChanged();
     }
 }
