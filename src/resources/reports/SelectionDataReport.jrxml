@@ -312,11 +312,11 @@
 				<text><![CDATA[- Ranking]]></text>
 			</staticText>
 			<staticText>
-				<reportElement positionType="Float" x="10" y="254" width="165" height="20" uuid="ba9cf8d7-5c74-45fa-a35f-60720a84a447"/>
+				<reportElement positionType="Float" x="10" y="254" width="180" height="20" uuid="ba9cf8d7-5c74-45fa-a35f-60720a84a447"/>
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
-				<text><![CDATA[(Archie Ekaviansyah)]]></text>
+				<text><![CDATA[(Archie Ekaviansyah Andhana Putra)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement positionType="Float" x="10" y="157" width="165" height="20" uuid="02825f11-d0ec-450e-a1ba-578b1c99d817"/>
@@ -333,7 +333,7 @@
 				<text><![CDATA[Manager SDM]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" x="10" y="254" width="165" height="1" uuid="3e22d4f6-c411-4705-80af-d22df508c240"/>
+				<reportElement positionType="Float" x="10" y="254" width="180" height="1" uuid="3e22d4f6-c411-4705-80af-d22df508c240"/>
 			</line>
 		</band>
 	</columnHeader>

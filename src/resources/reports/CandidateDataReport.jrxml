@@ -405,14 +405,14 @@
 				<text><![CDATA[Manager SDM]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" x="10" y="212" width="165" height="1" uuid="ddf80ad9-6d64-48b8-9e2e-b8d5c6607437"/>
+				<reportElement positionType="Float" x="10" y="212" width="180" height="1" uuid="ddf80ad9-6d64-48b8-9e2e-b8d5c6607437"/>
 			</line>
 			<staticText>
-				<reportElement positionType="Float" x="10" y="212" width="165" height="20" uuid="fed31c22-488d-41f5-b053-d86f510ece56"/>
+				<reportElement positionType="Float" x="10" y="212" width="180" height="20" uuid="fed31c22-488d-41f5-b053-d86f510ece56"/>
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
-				<text><![CDATA[(Archie Ekaviansyah)]]></text>
+				<text><![CDATA[(Archie Ekaviansyah Andhana Putra)]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

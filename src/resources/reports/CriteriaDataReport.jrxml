@@ -203,11 +203,11 @@
 				</jr:table>
 			</componentElement>
 			<staticText>
-				<reportElement positionType="Float" x="10" y="214" width="165" height="20" uuid="ba0f7ab6-e9ed-4ae7-aa12-8328ca724ec1"/>
+				<reportElement positionType="Float" x="10" y="214" width="180" height="20" uuid="ba0f7ab6-e9ed-4ae7-aa12-8328ca724ec1"/>
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
-				<text><![CDATA[(Archie Ekaviansyah)]]></text>
+				<text><![CDATA[(Archie Ekaviansyah Andhana Putra)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement positionType="Float" x="10" y="117" width="165" height="20" uuid="73c43927-c0f8-41e0-be4d-59720f66457f"/>
@@ -220,7 +220,7 @@
 				<reportElement positionType="Float" x="390" y="214" width="165" height="1" uuid="5a5d75fd-d7cd-4ded-b54e-c5a57d0a4c36"/>
 			</line>
 			<line>
-				<reportElement positionType="Float" x="10" y="214" width="165" height="1" uuid="d9f9cf15-f7f3-4eaa-97b3-d4f0457eed2e"/>
+				<reportElement positionType="Float" x="10" y="214" width="180" height="1" uuid="d9f9cf15-f7f3-4eaa-97b3-d4f0457eed2e"/>
 			</line>
 			<staticText>
 				<reportElement positionType="Float" x="390" y="117" width="37" height="20" uuid="6bdf0088-71c0-4cc6-b548-4f0377709e3a"/>
