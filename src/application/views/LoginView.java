@@ -5,7 +5,6 @@ import application.daoimpl.UserDaoImpl;
 import application.models.UserModel;
 import application.utils.DatabaseUtil;
 import java.awt.event.KeyEvent;
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
@@ -41,7 +40,6 @@ public class LoginView extends javax.swing.JFrame {
         UIManager.put("OptionPane.yesButtonText", "Ya");
         UIManager.put("OptionPane.noButtonText", "Tidak");
         
-//        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.addWindowListener(new WindowAdapter() {
@@ -64,7 +62,6 @@ public class LoginView extends javax.swing.JFrame {
         });
         // TODO add your custom frame code here:
         
-       
         frame.setVisible( true );
     }
     

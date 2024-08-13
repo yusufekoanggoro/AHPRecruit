@@ -1,19 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package application.views;
 
 import application.dao.UserDao;
 import application.daoimpl.UserDaoImpl;
 import application.models.UserModel;
 import application.utils.DatabaseUtil;
-import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -25,9 +18,6 @@ import javax.swing.UIManager;
 public class RegisterView extends javax.swing.JFrame {
     private UserDao userDao;
 
-    /**
-     * Creates new form RegisterView
-     */
     public RegisterView() {
         initComponents();
         userDao = new UserDaoImpl();
@@ -44,7 +34,6 @@ public class RegisterView extends javax.swing.JFrame {
     public void start(){
         JFrame frame = new RegisterView();
         frame.setTitle("Halaman Register");
-//        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         UIManager.put("OptionPane.yesButtonText", "Ya");
         UIManager.put("OptionPane.noButtonText", "Tidak");
@@ -71,7 +60,6 @@ public class RegisterView extends javax.swing.JFrame {
         });
         // TODO add your custom frame code here:
         
-       
         frame.setVisible( true );
         textFieldEmail.requestFocus();
     }
@@ -329,41 +317,6 @@ public class RegisterView extends javax.swing.JFrame {
         // TODO add your handling code here:
         register();
     }//GEN-LAST:event_buttonRegisterActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegisterView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegisterView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegisterView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegisterView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegisterView().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butonBack;

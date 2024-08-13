@@ -16,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
-import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -84,7 +83,6 @@ public class MenuView extends javax.swing.JFrame {
         });
         // TODO add your custom frame code here:
         
-       
         frame.setVisible( true );
     }
 
@@ -472,10 +470,7 @@ public class MenuView extends javax.swing.JFrame {
             
             HashMap parameter = new HashMap();
             parameter.put("PATH_IMG","resources/images/");
-//            Map<String, Object> params = new HashMap<>();
-//            
-//            BufferedImage image = ImageIO.read(getClass().getResource("/resources/templates/cherry.jpg"));
-//            params.put("logo", image );
+
 
             JasperPrint jp = JasperFillManager.fillReport(jr,parameter, dbConnection);
             JasperViewer.viewReport(jp, false);
